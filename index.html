@@ -1772,7 +1772,7 @@ nav.tabs{
 <h2 class="sec-title">第五章　研究分析策略總覽</h2>
 <p class="sec-desc">本章六節依「描述統計 → 前置假設檢驗 → 主要分析 → 穩健性交叉檢核 → 下結論」之一致邏輯進行。前四節為兩組組間比較，依「前測是否同質」與「迴歸係數同質性是否違反」決定採用 ANCOVA 或 Welch獨立樣本<span class="stat-symbol">t</span>檢定；第五、六節為單組分析（僅實驗組，無對照組），採信度、單一樣本<span class="stat-symbol">t</span>檢定 與相關分析。</p>
 </div>
-<div class="dg-wrap">
+<div class="dg-wrap dg-wrap-compare-flow">
 <div class="dg-cap">Track A · Section 01–04</div>
 <div class="dg-htitle">前四節｜兩組組間比較決策流程</div>
 <div class="dg-hdesc">同一套決策邏輯跑四次，差別僅在兩個分岔：（1）兩組前測是否同質；（2）ANCOVA 的迴歸係數同質性假設是否違反。最終結論一律需「多種方法方向收斂」才下定論。</div>
@@ -1824,7 +1824,7 @@ nav.tabs{
 <span><i class="dg-sw" style="background:#f7e2da;border:1px solid #b8482f;"></i>橘：迴歸同質性違反，改採 Johnson-Neyman 顯著區間為主、Welch獨立樣本<span class="stat-symbol">t</span>檢定 為輔（第一節）</span>
 </div>
 </div>
-<div class="dg-wrap">
+<div class="dg-wrap dg-wrap-single-flow">
 <div class="dg-cap">Track B · Section 05–06</div>
 <div class="dg-htitle">後兩節｜單組接受度分析流程</div>
 <div class="dg-hdesc">第五節科技接受度（TAM）與第六節生成式 AI 接受度（UTAUT 可用三向度）僅實驗組填答，無對照組，故不做組間比較，改以信度、單一樣本<span class="stat-symbol">t</span>檢定 與相關分析回答「接受度是否正向」與「接受度是否對應學習結果」。</div>
@@ -4989,6 +4989,84 @@ nav.tabs {
     width: min(360px, calc(100vw - 24px)) !important;
     max-width: min(360px, calc(100vw - 24px)) !important;
     padding: 15px 17px !important;
+  }
+}
+</style>
+
+
+
+<style id="actual-flow-size-fix-20260529">
+/* =========================================================
+   實際修復流程圖縮放無效問題：
+   1. 前版使用 #s0 .dg-wrap:nth-of-type(1)，但 #s0 第一個 div 是 .sec-header，
+      所以第一張流程圖沒有被選到。
+   2. transform: scale() 只縮放視覺，不改變原本 SVG 佔用的版面盒模型。
+   3. 本版改用明確 class + max-width 直接縮小實際寬度，並固定置中。
+   ========================================================= */
+
+/* 前四節｜兩組組間比較決策流程：實際寬度縮小到原 1118px 的約 92% ≒ 1029px */
+#s0 .dg-wrap-compare-flow .dg-flow-scale {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  padding: 8px 0 20px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+  touch-action: pan-y !important;
+}
+#s0 .dg-wrap-compare-flow .dg-flow-scale > svg {
+  width: 100% !important;
+  max-width: 1029px !important;
+  height: auto !important;
+  flex: 0 1 1029px !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform: none !important;
+  transform-origin: top center !important;
+}
+
+/* 後兩節｜單組接受度分析流程：維持原先可讀大小，僅固定置中、不左右滑動 */
+#s0 .dg-wrap-single-flow .dg-flow-scale {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  padding: 8px 0 70px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+  touch-action: pan-y !important;
+}
+#s0 .dg-wrap-single-flow .dg-flow-scale > svg {
+  width: 100% !important;
+  max-width: 1186px !important;
+  height: auto !important;
+  flex: 0 1 1186px !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform: none !important;
+  transform-origin: top center !important;
+}
+
+@media (max-width: 760px) {
+  #s0 .dg-wrap-compare-flow .dg-flow-scale > svg {
+    max-width: 100% !important;
+  }
+  #s0 .dg-wrap-single-flow .dg-flow-scale {
+    padding-bottom: 54px !important;
+  }
+  #s0 .dg-wrap-single-flow .dg-flow-scale > svg {
+    max-width: 100% !important;
   }
 }
 </style>
