@@ -3,7 +3,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>生成式AI融入基模表徵教學(SBI)對國中八年級學生函數學習成效之影響｜第五章研究結果</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -1542,6 +1542,297 @@ textarea {
   overflow-wrap: normal;
   line-break: strict;
 }
+
+
+/* ============== 2026 平板／行動裝置跑版修正 ============== */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+header.masthead,
+nav.tabs,
+main,
+.masthead-inner,
+.tabs-inner,
+.sec-header,
+.card-grid,
+.topic-card,
+.conclusion,
+.conclusion p,
+.overview-figure,
+.overview-figure-frame,
+.figure-embed,
+.modal-overlay,
+.modal-content,
+.modal-body,
+.chart-wrap,
+.stats-grid,
+.test-result,
+.note,
+.info,
+.success {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+main,
+.masthead-inner,
+.tabs-inner,
+.modal-content,
+.overview-figure,
+.conclusion {
+  width: 100%;
+}
+
+.conclusion {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 表格在小螢幕中獨立水平滑動，不再撐破整個頁面 */
+.table-responsive {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  margin: 22px 0;
+  border-radius: var(--radius-md);
+}
+
+.table-responsive > table {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  min-width: max-content;
+}
+
+.table-responsive th,
+.table-responsive td {
+  white-space: nowrap;
+}
+
+.table-responsive .data-table th,
+.table-responsive .data-table td {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.table-responsive .tam-corr-table {
+  min-width: 620px;
+}
+
+/* 原本已有 overflow-x 的矩陣區塊，保留並補強寬度限制 */
+.tam-corr-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chart-wrap canvas,
+.figure-embed img,
+.overview-figure img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+@media (max-width: 1024px) {
+  header.masthead {
+    padding: 56px 34px 46px;
+  }
+
+  nav.tabs {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  main {
+    padding: 44px 28px 86px;
+  }
+
+  .masthead-inner,
+  .tabs-inner,
+  main,
+  .modal-content,
+  .overview-figure,
+  .conclusion {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h1.masthead-title,
+  .sec-title,
+  .modal-title,
+  .topic-title,
+  .sec-desc,
+  .modal-subtitle,
+  .modal-body p,
+  .conclusion p,
+  .note,
+  .info,
+  .success,
+  .overview-figure-title,
+  .overview-figure-note {
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    line-break: auto !important;
+  }
+
+  .conclusion {
+    padding: 32px 30px;
+  }
+
+  .conclusion::before {
+    font-size: 72px;
+    right: 22px;
+  }
+
+  .modal-overlay {
+    padding: 3vh 3vw;
+  }
+
+  .modal-content {
+    padding: 56px 34px 48px;
+  }
+
+  .chart-grid-2,
+  .chart-grid-3,
+  .row-2,
+  .row-3 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .test-result {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .test-result .col:nth-child(2n) {
+    border-right: none;
+  }
+
+  .test-result .col {
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .test-result .col:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    font-size: 17px;
+  }
+
+  header.masthead {
+    padding: 46px 22px 38px;
+  }
+
+  nav.tabs {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  main {
+    padding: 34px 18px 72px;
+  }
+
+  h1.masthead-title {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+
+  .sec-title {
+    font-size: clamp(27px, 7vw, 34px);
+  }
+
+  .modal-title {
+    font-size: 30px;
+    padding-right: 54px;
+  }
+
+  .modal-content {
+    padding: 50px 20px 38px;
+    border-radius: 14px;
+  }
+
+  .modal-close {
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .card-grid,
+  #s7 .card-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .topic-card,
+  #s7 .topic-card {
+    min-height: auto;
+  }
+
+  .conclusion {
+    padding: 28px 22px;
+  }
+
+  .conclusion::before {
+    font-size: 56px;
+    top: 18px;
+    right: 16px;
+  }
+
+  .overview-figure,
+  .figure-embed {
+    padding: 14px;
+  }
+
+  .table-responsive .data-table th,
+  .table-responsive .data-table td,
+  .table-responsive .tam-corr-table th,
+  .table-responsive .tam-corr-table td {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .stat-value {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 560px) {
+  .test-result {
+    grid-template-columns: 1fr;
+  }
+
+  .test-result .col,
+  .test-result .col:nth-child(2n),
+  .test-result .col:nth-last-child(-n+2) {
+    border-right: none;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .test-result .col:last-child {
+    border-bottom: none;
+  }
+
+  .masthead-meta {
+    gap: 18px;
+  }
+
+  .tab-btn {
+    padding: 18px 18px;
+    font-size: 16px;
+  }
+}
+
 </style>
 <script>/*!
  * Chart.js v4.4.0
@@ -2266,6 +2557,7 @@ nav.tabs{
 <h2 class="modal-title">描述統計</h2>
 <p class="modal-subtitle">兩組學生於函數單元前測、後測之分數及進步分數。</p>
 <div class="modal-body">
+<div class="table-responsive">
 <table class="data-table">
 <thead><tr><th>組別</th><th class="num-col"><span class="stat-symbol">n</span></th><th class="num-col">前測 <span class="stat-symbol">M</span></th><th class="num-col">前測 <span class="stat-symbol">SD</span></th><th class="num-col">後測 <span class="stat-symbol">M</span></th><th class="num-col">後測 <span class="stat-symbol">SD</span></th><th class="num-col">進步 <span class="stat-symbol">M</span></th><th class="num-col">進步 <span class="stat-symbol">SD</span></th></tr></thead>
 <tbody>
@@ -2273,6 +2565,7 @@ nav.tabs{
 <tr class="exp-row"><td>實驗組</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">30</span><span class="dn-dot"></span><span class="dn-dec"></span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">56</span><span class="dn-dot">.</span><span class="dn-dec">00</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">24</span><span class="dn-dot">.</span><span class="dn-dec">44</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">78</span><span class="dn-dot">.</span><span class="dn-dec">67</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">13</span><span class="dn-dot">.</span><span class="dn-dec">39</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign">+</span><span class="dn-int">22</span><span class="dn-dot">.</span><span class="dn-dec">67</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">24</span><span class="dn-dot">.</span><span class="dn-dec">38</span></span></td></tr>
 </tbody>
 </table>
+</div>
 <div class="chart-wrap tall">
 <div class="chart-title">兩組前測、後測平均分數比較</div>
 <canvas id="c-s1m1"></canvas>
@@ -2389,6 +2682,7 @@ nav.tabs{
 <p class="modal-subtitle">由於兩組「前測 → 後測」迴歸斜率不同質，組間效果隨前測而變動。本研究改以含交互作用之迴歸模型，並透過 Johnson-Neyman 程序界定「在哪一段前測範圍，實驗組顯著優於控制組」。</p>
 <div class="modal-body">
 <h3 class="modal-h3">5.1　含交互作用之迴歸模型（表 5-5）</h3>
+<div class="table-responsive">
 <table class="data-table">
 <thead><tr><th>預測變項</th><th class="num-col"><span class="stat-symbol">B</span></th><th class="num-col"><span class="stat-symbol">SE</span></th><th class="num-col"><span class="stat-symbol">t</span></th><th class="num-col"><span class="stat-symbol">p</span></th></tr></thead>
 <tbody>
@@ -2398,6 +2692,7 @@ nav.tabs{
 <tr class="highlight"><td>組別 × 前測</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">53</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">17</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">3</span><span class="dn-dot">.</span><span class="dn-dec">11</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">003</span></span></td></tr>
 </tbody>
 </table>
+</div>
 <p class="text-tiny">依變項 = 後測分數；組別以「控制 = 1、實驗 = 0」編碼。整體模型 <span class="stat-symbol">F</span>(3, 54) = 19.71, <span class="stat-symbol">p</span> &lt; .001；<span class="stat-symbol">R</span><sup>2</sup> = .523，調整後 <span class="stat-symbol">R</span><sup>2</sup> = .496。交互作用項（組別 × 前測）顯著，故組間效果非固定值，須以 Johnson-Neyman 界定其顯著範圍。</p>
 <h3 class="modal-h3">5.2　顯著區間與圖示（圖 5-2）</h3>
 <div class="chart-wrap tall">
@@ -2416,6 +2711,7 @@ nav.tabs{
 <h2 class="modal-title">描述統計</h2>
 <p class="modal-subtitle">兩組學生數學學習興趣前測、後測與進步分數。</p>
 <div class="modal-body">
+<div class="table-responsive">
 <table class="data-table">
 <thead><tr><th>組別</th><th class="num-col"><span class="stat-symbol">n</span></th><th class="num-col">前測 <span class="stat-symbol">M</span></th><th class="num-col">前測 <span class="stat-symbol">SD</span></th><th class="num-col">後測 <span class="stat-symbol">M</span></th><th class="num-col">後測 <span class="stat-symbol">SD</span></th><th class="num-col">進步 <span class="stat-symbol">M</span></th></tr></thead>
 <tbody>
@@ -2423,6 +2719,7 @@ nav.tabs{
 <tr class="exp-row"><td>實驗組</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">30</span><span class="dn-dot"></span><span class="dn-dec"></span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">3</span><span class="dn-dot">.</span><span class="dn-dec">80</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">74</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">3</span><span class="dn-dot">.</span><span class="dn-dec">78</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">79</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign">−</span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">02</span></span></td></tr>
 </tbody>
 </table>
+</div>
 <div class="chart-wrap medium"><canvas id="c-s2m1"></canvas></div>
 <p class="text-tiny">兩組教學前後幾乎無變化（進步 <span class="stat-symbol">M</span> ≈ −0.01），但實驗組前測起點明顯高於控制組，需進一步檢驗。</p>
 </div>
@@ -2468,6 +2765,7 @@ nav.tabs{
 <h2 class="modal-title">ANCOVA 組間差異分析</h2>
 <p class="modal-subtitle">迴歸係數同質性假設未違反 (<span class="stat-symbol">F</span>(1,54) = 2.35, <span class="stat-symbol">p</span> = .131)，可進行 ANCOVA。控制前測學習興趣後比較兩組後測差異。</p>
 <div class="modal-body">
+<div class="table-responsive">
 <table class="data-table">
 <thead><tr><th>變異來源</th><th class="num-col"><span class="stat-symbol">SS</span></th><th class="num-col"><span class="stat-symbol"><span class="stat-symbol">df</span></span></th><th class="num-col"><span class="stat-symbol">MS</span></th><th class="num-col"><span class="stat-symbol">F</span></th><th class="num-col"><span class="stat-symbol">p</span></th><th class="num-col"><span class="stat-symbol">η</span><sub><span class="stat-symbol">p</span></sub><sup>2</sup></th></tr></thead>
 <tbody>
@@ -2476,6 +2774,7 @@ nav.tabs{
 <tr><td>誤差</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">18</span><span class="dn-dot">.</span><span class="dn-dec">37</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">55</span><span class="dn-dot"></span><span class="dn-dec"></span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">33</span></span></td><td class="num-col">—</td><td class="num-col">—</td><td class="num-col">—</td></tr>
 </tbody>
 </table>
+</div>
 <h3 class="modal-h3">調整後平均數</h3>
 <div class="row-2">
 <div class="stat ctrl"><div class="stat-label">控制組調整後平均</div><div class="stat-value"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">3</span><span class="dn-dot">.</span><span class="dn-dec">36</span></span></div><div class="stat-sub"><span class="stat-symbol">SE</span> = 0.11</div></div>
@@ -2515,6 +2814,7 @@ nav.tabs{
 <h2 class="modal-title">描述統計</h2>
 <p class="modal-subtitle">兩組學生數學學習態度前測、後測與進步分數。</p>
 <div class="modal-body">
+<div class="table-responsive">
 <table class="data-table">
 <thead><tr><th>組別</th><th class="num-col"><span class="stat-symbol">n</span></th><th class="num-col">前測 <span class="stat-symbol">M</span></th><th class="num-col">前測 <span class="stat-symbol">SD</span></th><th class="num-col">後測 <span class="stat-symbol">M</span></th><th class="num-col">後測 <span class="stat-symbol">SD</span></th><th class="num-col">進步 <span class="stat-symbol">M</span></th></tr></thead>
 <tbody>
@@ -2522,6 +2822,7 @@ nav.tabs{
 <tr class="exp-row"><td>實驗組</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">30</span><span class="dn-dot"></span><span class="dn-dec"></span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">4</span><span class="dn-dot">.</span><span class="dn-dec">12</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">66</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">4</span><span class="dn-dot">.</span><span class="dn-dec">04</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">72</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign">−</span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">08</span></span></td></tr>
 </tbody>
 </table>
+</div>
 <div class="chart-wrap medium"><canvas id="c-s3m1"></canvas></div>
 </div>
 </template>
@@ -2566,6 +2867,7 @@ nav.tabs{
 <h2 class="modal-title">ANCOVA 組間差異分析</h2>
 <p class="modal-subtitle">迴歸係數同質性假設未違反 (<span class="stat-symbol">F</span>(1,54) = 0.33, <span class="stat-symbol">p</span> = .570)，可進行 ANCOVA。</p>
 <div class="modal-body">
+<div class="table-responsive">
 <table class="data-table">
 <thead><tr><th>變異來源</th><th class="num-col"><span class="stat-symbol">SS</span></th><th class="num-col"><span class="stat-symbol"><span class="stat-symbol">df</span></span></th><th class="num-col"><span class="stat-symbol">MS</span></th><th class="num-col"><span class="stat-symbol">F</span></th><th class="num-col"><span class="stat-symbol">p</span></th><th class="num-col"><span class="stat-symbol">η</span><sub><span class="stat-symbol">p</span></sub><sup>2</sup></th></tr></thead>
 <tbody>
@@ -2574,6 +2876,7 @@ nav.tabs{
 <tr><td>誤差</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">19</span><span class="dn-dot">.</span><span class="dn-dec">41</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">55</span><span class="dn-dot"></span><span class="dn-dec"></span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">35</span></span></td><td class="num-col">—</td><td class="num-col">—</td><td class="num-col">—</td></tr>
 </tbody>
 </table>
+</div>
 <h3 class="modal-h3">調整後平均數</h3>
 <div class="row-2">
 <div class="stat ctrl"><div class="stat-label">控制組調整後平均</div><div class="stat-value"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">3</span><span class="dn-dot">.</span><span class="dn-dec">64</span></span></div><div class="stat-sub"><span class="stat-symbol">SE</span> = 0.12</div></div>
@@ -2633,6 +2936,7 @@ nav.tabs{
 <h2 class="modal-title">描述統計</h2>
 <p class="modal-subtitle">兩組學生數學焦慮前測、後測與變化分數。分數越高代表焦慮越高。</p>
 <div class="modal-body">
+<div class="table-responsive">
 <table class="data-table">
 <thead><tr><th>組別</th><th class="num-col"><span class="stat-symbol">n</span></th><th class="num-col">前測 <span class="stat-symbol">M</span></th><th class="num-col">前測 <span class="stat-symbol">SD</span></th><th class="num-col">後測 <span class="stat-symbol">M</span></th><th class="num-col">後測 <span class="stat-symbol">SD</span></th><th class="num-col">變化 <span class="stat-symbol">M</span></th></tr></thead>
 <tbody>
@@ -2640,6 +2944,7 @@ nav.tabs{
 <tr class="exp-row"><td>實驗組</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">30</span><span class="dn-dot"></span><span class="dn-dec"></span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">2</span><span class="dn-dot">.</span><span class="dn-dec">50</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">97</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">2</span><span class="dn-dot">.</span><span class="dn-dec">44</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">84</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign">−</span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">05</span></span></td></tr>
 </tbody>
 </table>
+</div>
 <p class="text-tiny mt-16" style="font-size: calc(14px + 4pt);"><strong>控制組焦慮微幅上升 (+0.14)、實驗組焦慮微幅下降 (−0.05)</strong>，兩組變化方向相反。</p>
 <div class="chart-wrap medium mt-24"><canvas id="c-s4m1"></canvas></div>
 </div>
@@ -2666,6 +2971,7 @@ nav.tabs{
 <h2 class="modal-title">ANCOVA 組間差異分析（核心發現）</h2>
 <p class="modal-subtitle">迴歸係數同質性假設未違反 (<span class="stat-symbol">F</span>(1,54) = 1.36, <span class="stat-symbol">p</span> = .249)，可進行 ANCOVA。</p>
 <div class="modal-body">
+<div class="table-responsive">
 <table class="data-table">
 <thead><tr><th>變異來源</th><th class="num-col"><span class="stat-symbol">SS</span></th><th class="num-col"><span class="stat-symbol"><span class="stat-symbol">df</span></span></th><th class="num-col"><span class="stat-symbol">MS</span></th><th class="num-col"><span class="stat-symbol">F</span></th><th class="num-col"><span class="stat-symbol">p</span></th><th class="num-col"><span class="stat-symbol">η</span><sub><span class="stat-symbol">p</span></sub><sup>2</sup></th></tr></thead>
 <tbody>
@@ -2674,6 +2980,7 @@ nav.tabs{
 <tr><td>誤差</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">15</span><span class="dn-dot">.</span><span class="dn-dec">23</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">55</span><span class="dn-dot"></span><span class="dn-dec"></span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">28</span></span></td><td class="num-col">—</td><td class="num-col">—</td><td class="num-col">—</td></tr>
 </tbody>
 </table>
+</div>
 <h3 class="modal-h3">調整後平均數</h3>
 <div class="row-2">
 <div class="stat ctrl"><div class="stat-label">控制組調整後平均</div><div class="stat-value"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">2</span><span class="dn-dot">.</span><span class="dn-dec">86</span></span></div><div class="stat-sub"><span class="stat-symbol">SE</span> = 0.10</div></div>
@@ -2729,6 +3036,7 @@ nav.tabs{
 <h2 class="modal-title">描述統計與單一樣本<span class="stat-symbol">t</span>檢定</h2>
 <p class="modal-subtitle">以五點量表中立值 3 為檢定值，檢驗實驗組接受度是否顯著正向。</p>
 <div class="modal-body">
+<div class="table-responsive">
 <table class="data-table">
 <thead><tr><th>向度</th><th class="num-col"><span class="stat-symbol">n</span></th><th class="num-col"><span class="stat-symbol">M</span></th><th class="num-col"><span class="stat-symbol">SD</span></th><th class="num-col"><span class="stat-symbol">t</span>(29)</th><th class="num-col"><span class="stat-symbol">p</span></th><th class="num-col">Cohen's <span class="stat-symbol">d</span></th></tr></thead>
 <tbody>
@@ -2737,6 +3045,7 @@ nav.tabs{
 <tr class="highlight"><td>整體 TAM</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">30</span><span class="dn-dot"></span><span class="dn-dec"></span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">3</span><span class="dn-dot">.</span><span class="dn-dec">95</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">80</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">6</span><span class="dn-dot">.</span><span class="dn-dec">52</span></span><span class="sig-star-inline">***</span></td><td class="num-col tam-sig-p">&lt; .001</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">1</span><span class="dn-dot">.</span><span class="dn-dec">19</span></span></td></tr>
 </tbody>
 </table>
+</div>
 <div class="chart-wrap medium mt-24 tam-bar-wrap"><canvas id="c-s5m2"></canvas></div>
 <p class="text-tiny">單一樣本<span class="stat-symbol">t</span>檢定之檢定值為五點量表中立值3；Cohen's <span class="stat-symbol">d</span>為平均數與檢定值差異除以標準差。*** <span class="stat-symbol">p</span> &lt; .001。</p>
 </div>
@@ -2748,6 +3057,7 @@ nav.tabs{
 <div class="modal-body">
 <h3 class="modal-h3">3.1　TAM 兩向度 Pearson 相關矩陣</h3>
 <div class="tam-corr-wrap" aria-label="TAM 兩向度 Pearson 相關矩陣">
+<div class="table-responsive">
 <table class="tam-corr-table">
 <thead>
 <tr><th>變項</th><th>知覺有用性 PU</th><th>知覺易用性 PEOU</th></tr>
@@ -2765,6 +3075,7 @@ nav.tabs{
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <p class="text-tiny mt-16 ai-matrix-note">註：<span class="stat-symbol">n</span> = 30。95% CI [ .787, .949]。*** <span class="stat-symbol">p</span> <span class="p-threshold-green">&lt; .001</span> (雙尾)。</p>
 <h3 class="modal-h3">知覺有用性 × 知覺易用性關係散布圖與線性趨勢線（Linear trendline）</h3>
@@ -2838,6 +3149,7 @@ nav.tabs{
 <h2 class="modal-title">描述統計與單一樣本<span class="stat-symbol">t</span>檢定</h2>
 <p class="modal-subtitle">以五點量表中立值 3 為檢定值，檢驗實驗組對生成式人工智慧之接受度是否顯著正向。</p>
 <div class="modal-body">
+<div class="table-responsive">
 <table class="data-table">
 <thead><tr><th>向度</th><th class="num-col"><span class="stat-symbol">n</span></th><th class="num-col"><span class="stat-symbol">M</span></th><th class="num-col"><span class="stat-symbol">SD</span></th><th class="num-col"><span class="stat-symbol">t</span>(29)</th><th class="num-col"><span class="stat-symbol">p</span></th><th class="num-col">Cohen's <span class="stat-symbol">d</span></th></tr></thead>
 <tbody>
@@ -2847,6 +3159,7 @@ nav.tabs{
 <tr class="highlight"><td>可用向度整體</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">30</span><span class="dn-dot"></span><span class="dn-dec"></span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">3</span><span class="dn-dot">.</span><span class="dn-dec">88</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">0</span><span class="dn-dot">.</span><span class="dn-dec">72</span></span></td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">6</span><span class="dn-dot">.</span><span class="dn-dec">76</span></span></td><td class="num-col ai-sig-p">&lt; .001</td><td class="num-col"><span class="dnum"><span class="dn-sign"></span><span class="dn-int">1</span><span class="dn-dot">.</span><span class="dn-dec">23</span></span></td></tr>
 </tbody>
 </table>
+</div>
 <div class="chart-wrap medium mt-24"><canvas id="c-s6m2"></canvas></div>
 <p class="text-tiny ai-note-large">FC 效果量最高 (<span class="stat-symbol">d</span> = 1.27)，SI 效果量相對較低 (<span class="stat-symbol">d</span> = 0.92)，反映學生對自身使用條件評價最為正向，社交環境影響感受相對較弱。</p>
 </div>
@@ -2858,6 +3171,7 @@ nav.tabs{
 <div class="modal-body">
 <h3 class="modal-h3">4.1　生成式人工智慧接受度三向度 Pearson 相關矩陣</h3>
 <div class="tam-corr-wrap" aria-label="生成式人工智慧接受度三向度 Pearson 相關矩陣">
+<div class="table-responsive">
 <table class="tam-corr-table">
 <thead>
 <tr><th>變項</th><th>操作便利性期望 EE</th><th>促成條件 FC</th><th>社交影響力 SI</th></tr>
@@ -2883,6 +3197,7 @@ nav.tabs{
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <p class="text-tiny mt-16 ai-matrix-note">註：<span class="stat-symbol">n</span> = 30。EE－FC 95% CI [.662, .914]；EE－SI 95% CI [.366, .814]；FC－SI 95% CI [.399, .827]。<span class="sig-tooltip" data-tip="*** p &lt; .001：達極高度統計顯著（α = .001水準）。若虛無假設成立，觀察到目前差異／關聯或更極端結果的機率小於千分之一，因此可拒絕虛無假設。">*** <span class="stat-symbol">p</span> <span class="p-threshold-green">&lt; .001</span> (雙尾)</span>。</p>
 <h3 class="modal-h3">4.2　各個向度成對關係散布圖與線性趨勢線（Linear trendline）</h3>
