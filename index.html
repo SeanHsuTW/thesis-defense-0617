@@ -1560,8 +1560,7 @@ textarea {
 <body>
 <header class="masthead">
 <div class="masthead-inner">
-<div class="orientation-hint">【為得到最佳觀賞體驗請將平板或手機橫置觀看】</div>
-<div class="eyebrow">第五章 · 研究結果 · 互動式統計分析</div>
+<div class="eyebrow">第五章 · 研究結果 · 互動式統計分析 <span class="orientation-hint-inline">（為得到最佳觀賞體驗請將平板或手機橫置觀看）</span></div>
 <h1 class="masthead-title">生成式AI融入基模表徵教學(SBI)<br/>對國中八年級學生函數學習成效之影響</h1>
 <p class="masthead-sub">準實驗研究設計　|　實驗組 Google Edu-AI＋基模表徵教學（<span class="stat-nowrap"><span class="stat-symbol">n</span> = 30</span>）　|　控制組 Google 搜尋＋基模表徵教學（<span class="stat-nowrap"><span class="stat-symbol">n</span> = 28</span>）</p>
 <div class="masthead-meta">
@@ -4767,6 +4766,96 @@ nav.tabs {
   }
 })();
 </script>
+
+
+<style id="final-inline-hint-and-wide-tooltip-fixes">
+/* =========================================================
+   最終微調：
+   1. 橫置提示改放在 eyebrow 同一行後方，淡藍色、同字級
+   2. 浮動解釋說明視窗改為較寬、自然換行、無水平捲動
+   ========================================================= */
+
+/* 舊版獨立提示若仍殘留，直接隱藏；新版提示已併入 .eyebrow */
+.orientation-hint {
+  display: none !important;
+}
+.eyebrow .orientation-hint-inline {
+  display: inline !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  letter-spacing: inherit !important;
+  color: #9FD3FF !important;
+  font-weight: inherit !important;
+  white-space: normal !important;
+  opacity: 1 !important;
+}
+@media (max-width: 760px) {
+  .eyebrow .orientation-hint-inline {
+    display: inline !important;
+    white-space: normal !important;
+  }
+}
+
+/* 桌機 hover tooltip：放大寬度、自然換行，不產生水平捲動 */
+.sig-tooltip::after,
+.hover-tip::after,
+.data-table td.num-col .dnum.pval.sig-tooltip::after,
+.test-result .sig-tooltip::after,
+.tam-corr-table .sig-tooltip::after {
+  width: min(760px, calc(100vw - 48px)) !important;
+  max-width: calc(100vw - 48px) !important;
+  min-width: min(320px, calc(100vw - 48px)) !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  line-break: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+/* 平板／手機真實 DOM tooltip：一個較大的說明面板；不做左右滑動 */
+#touch-tooltip-panel {
+  width: min(760px, calc(100vw - 32px)) !important;
+  max-width: calc(100vw - 32px) !important;
+  max-height: none !important;
+  overflow: visible !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  padding: 18px 22px 18px 22px !important;
+  border-radius: 12px !important;
+  font-size: clamp(14.5px, 1.8vw, 16px) !important;
+  line-height: 1.78 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  line-break: auto !important;
+}
+#touch-tooltip-panel .touch-tooltip-text {
+  display: block !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+#touch-tooltip-panel::before {
+  margin-bottom: 8px !important;
+}
+#touch-tooltip-panel .touch-tooltip-close {
+  top: 8px !important;
+  right: 10px !important;
+}
+
+@media (max-width: 760px) {
+  #touch-tooltip-panel {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+    bottom: max(12px, env(safe-area-inset-bottom)) !important;
+    padding: 16px 18px !important;
+  }
+}
+</style>
 
 </body>
 </html>
