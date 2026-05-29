@@ -1560,6 +1560,7 @@ textarea {
 <body>
 <header class="masthead">
 <div class="masthead-inner">
+<div class="orientation-hint">【為得到最佳觀賞體驗請將平板或手機橫置觀看】</div>
 <div class="eyebrow">第五章 · 研究結果 · 互動式統計分析</div>
 <h1 class="masthead-title">生成式AI融入基模表徵教學(SBI)<br/>對國中八年級學生函數學習成效之影響</h1>
 <p class="masthead-sub">準實驗研究設計　|　實驗組 Google Edu-AI＋基模表徵教學（<span class="stat-nowrap"><span class="stat-symbol">n</span> = 30</span>）　|　控制組 Google 搜尋＋基模表徵教學（<span class="stat-nowrap"><span class="stat-symbol">n</span> = 28</span>）</p>
@@ -4391,5 +4392,127 @@ nav.tabs {
     if (e.key === 'Escape') clearActive(null);
   });
 })();
-</script></body>
+</script>
+<style id="orientation-hint-and-contrast-fixes">
+/* =========================================================
+   補充修正：橫置提示、平板橫直向穩定化、藍色卡片文字對比
+   僅做非破壞性覆寫，不重構 HTML 與既有互動。
+   ========================================================= */
+
+/* 頁首最小提示文字：置於「第五章．研究結果．互動式統計分析」上方 */
+.orientation-hint {
+  font-size: 11px !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.04em !important;
+  color: rgba(243, 236, 214, 0.62) !important;
+  font-weight: 400 !important;
+  margin: 0 0 8px !important;
+  text-align: left !important;
+}
+@media (max-width: 1100px) {
+  .orientation-hint {
+    font-size: 10.5px !important;
+    margin-bottom: 7px !important;
+  }
+}
+
+/* Tabs：最後保險覆寫，只允許水平滑動，不折行、不垂直捲動 */
+nav.tabs {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+}
+.tabs-inner {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-x !important;
+}
+.tab-btn {
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+}
+
+/* 藍色 featured 小卡上原本偏灰、低對比的輔助文字改為亮黃色 */
+.topic-card.featured .topic-num,
+.topic-card.featured .topic-method,
+.topic-card.featured .topic-key-label {
+  color: #FFD700 !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.18);
+}
+.topic-card.featured .topic-cta {
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+}
+.topic-card.featured .topic-tag {
+  color: #FFFFFF !important;
+  background: rgba(255,255,255,0.20) !important;
+}
+
+/* 深色結論區塊：一般文字純白，提醒性小字維持亮黃色 */
+.conclusion,
+.conclusion p,
+.conclusion .s7-modal-body,
+.conclusion .s7-modal-body p {
+  color: #FFFFFF !important;
+}
+.conclusion .text-tiny,
+.conclusion .note-emphasis,
+.conclusion .jn-caution,
+.conclusion .highlight-note {
+  color: #FFD700 !important;
+  font-weight: 800 !important;
+}
+
+/* 平板橫向高度較低時，modal 不超出螢幕；內容留在 modal 內部捲動 */
+@media (max-width: 1180px) {
+  .modal-content {
+    width: min(1180px, calc(100vw - 48px)) !important;
+    max-height: calc(100dvh - 48px) !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+  }
+}
+@media (max-width: 760px) {
+  .modal-content {
+    width: calc(100vw - 28px) !important;
+    max-height: calc(100dvh - 28px) !important;
+  }
+}
+
+/* Tooltip：平板觸控環境使用固定置中，避免左右邊界裁切 */
+@media (max-width: 1100px), (hover: none) {
+  .sig-tooltip::after,
+  .hover-tip::after,
+  .data-table td.num-col .dnum.pval.sig-tooltip::after,
+  .test-result .sig-tooltip::after,
+  .tam-corr-table .sig-tooltip::after {
+    position: fixed !important;
+    left: 50vw !important;
+    top: max(84px, 10vh) !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: min(340px, 85vw) !important;
+    max-height: 58dvh !important;
+    overflow-y: auto !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+    line-break: strict !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+    z-index: 10000 !important;
+  }
+}
+</style>
+
+</body>
 </html>
