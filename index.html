@@ -4857,5 +4857,141 @@ nav.tabs {
 }
 </style>
 
+
+
+<style id="final-flow-fixed-and-tooltip-shorter-adjustments">
+/* =========================================================
+   最終微調二：流程圖固定置中、提示色加深、浮動說明視窗縮短
+   只覆寫相關區塊，不重構 HTML 與 JavaScript。
+   ========================================================= */
+
+/* A. 00策略分析流程圖：固定置中，取消水平滑動 */
+#s0 .dg-flow-scale {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  -webkit-overflow-scrolling: auto !important;
+  overscroll-behavior-x: none !important;
+  touch-action: pan-y !important;
+  box-sizing: border-box !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+#s0 .dg-flow-scale::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* 前四節｜兩組組間比較決策流程：由原本 120% 略縮 10% → 約 108% 視覺比例 */
+#s0 .dg-wrap:nth-of-type(1) .dg-flow-scale {
+  padding: 8px 0 54px !important;
+}
+#s0 .dg-wrap:nth-of-type(1) .dg-flow-scale > svg {
+  width: 100% !important;
+  max-width: 1118px !important;
+  height: auto !important;
+  flex: 0 0 auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  transform: scale(1.08) !important;
+  transform-origin: top center !important;
+}
+
+/* 後兩節｜單組接受度分析流程：維持目前視覺大小，但固定置中、不允許水平滑動 */
+#s0 .dg-wrap:nth-of-type(2) .dg-flow-scale {
+  padding: 8px 0 70px !important;
+}
+#s0 .dg-wrap:nth-of-type(2) .dg-flow-scale > svg {
+  width: 100% !important;
+  max-width: 988px !important;
+  height: auto !important;
+  flex: 0 0 auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  transform: scale(1.20) !important;
+  transform-origin: top center !important;
+}
+
+/* 平板直向時避免流程圖壓到說明文字；仍保持固定置中、不滑動 */
+@media (max-width: 760px) {
+  #s0 .dg-wrap:nth-of-type(1) .dg-flow-scale {
+    padding-bottom: 40px !important;
+  }
+  #s0 .dg-wrap:nth-of-type(1) .dg-flow-scale > svg {
+    transform: scale(1.04) !important;
+  }
+  #s0 .dg-wrap:nth-of-type(2) .dg-flow-scale {
+    padding-bottom: 54px !important;
+  }
+  #s0 .dg-wrap:nth-of-type(2) .dg-flow-scale > svg {
+    transform: scale(1.12) !important;
+  }
+}
+
+/* B. 橫置觀看提示：淡藍色加深約 20% */
+.eyebrow .orientation-hint-inline {
+  color: #7FA9CC !important;
+}
+
+/* C. 浮動解釋說明視窗：寬度縮為前一版約一半，保留自然換行、不產生左右滑動 */
+.sig-tooltip::after,
+.hover-tip::after,
+.data-table td.num-col .dnum.pval.sig-tooltip::after,
+.test-result .sig-tooltip::after,
+.tam-corr-table .sig-tooltip::after {
+  width: min(390px, calc(100vw - 48px)) !important;
+  min-width: min(260px, calc(100vw - 48px)) !important;
+  max-width: min(390px, calc(100vw - 48px)) !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  line-break: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  box-sizing: border-box !important;
+}
+
+#touch-tooltip-panel {
+  width: min(390px, calc(100vw - 32px)) !important;
+  max-width: min(390px, calc(100vw - 32px)) !important;
+  max-height: 58dvh !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  padding: 16px 18px !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  line-break: auto !important;
+}
+#touch-tooltip-panel .touch-tooltip-text {
+  max-width: 100% !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  overflow-x: hidden !important;
+}
+
+@media (max-width: 760px) {
+  .sig-tooltip::after,
+  .hover-tip::after,
+  .data-table td.num-col .dnum.pval.sig-tooltip::after,
+  .test-result .sig-tooltip::after,
+  .tam-corr-table .sig-tooltip::after {
+    width: min(360px, calc(100vw - 28px)) !important;
+    min-width: 0 !important;
+    max-width: min(360px, calc(100vw - 28px)) !important;
+  }
+  #touch-tooltip-panel {
+    width: min(360px, calc(100vw - 24px)) !important;
+    max-width: min(360px, calc(100vw - 24px)) !important;
+    padding: 15px 17px !important;
+  }
+}
+</style>
+
 </body>
 </html>
