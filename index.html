@@ -5071,5 +5071,70 @@ nav.tabs {
 }
 </style>
 
+
+
+<style id="final-compare-flow-real-proportional-shrink-20260529">
+/* =========================================================
+   真的等比縮小「兩組組間比較決策流程圖」
+   修正重點：
+   1. 不再用 transform: scale()，避免只縮視覺、不改版面高度。
+   2. 不再用 flex 容器撐出錯誤高度。
+   3. 直接改 SVG 本體實際 width，讓寬高一起等比變小。
+   4. 維持置中固定，禁止左右滑動，也不裁切上下內容。
+   ========================================================= */
+
+/* 第一張流程圖外層：一般區塊置中，不滑動、不裁切 */
+#s0 .dg-wrap-compare-flow .dg-flow-scale {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  text-align: center !important;
+  padding: 8px 0 28px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+  -webkit-overflow-scrolling: auto !important;
+  touch-action: pan-y !important;
+}
+
+/* 桌機：直接縮小 SVG 實際寬度；寬度變小，高度會跟著等比變小 */
+#s0 .dg-wrap-compare-flow .dg-flow-scale > svg {
+  display: block !important;
+  width: min(88%, 960px) !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  transform: none !important;
+  transform-origin: top center !important;
+  flex: none !important;
+}
+
+/* 圖例與流程圖分開，避免視覺上像被壓到或藏在下方 */
+#s0 .dg-wrap-compare-flow .dg-legend {
+  margin-top: 10px !important;
+  clear: both !important;
+}
+
+/* 平板：稍微放寬，避免直向太小；仍然不滑動 */
+@media (max-width: 1100px) {
+  #s0 .dg-wrap-compare-flow .dg-flow-scale > svg {
+    width: min(94%, 940px) !important;
+    max-width: 100% !important;
+  }
+}
+
+/* 手機：用滿容器，避免小到看不清楚 */
+@media (max-width: 760px) {
+  #s0 .dg-wrap-compare-flow .dg-flow-scale {
+    padding-bottom: 22px !important;
+  }
+  #s0 .dg-wrap-compare-flow .dg-flow-scale > svg {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+</style>
+
 </body>
 </html>
