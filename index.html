@@ -1767,7 +1767,7 @@ nav.tabs .tabs-inner{ gap: 4px; }
 <body>
 <header class="masthead">
 <div class="masthead-inner">
-<div class="eyebrow">第五章 · 研究結果 · 互動式統計分析</div>
+<div class="eyebrow"><span class="eyebrow-main">第五章 · 研究結果 · 互動式統計分析</span><span class="orientation-hint">請將手機/平板橫置觀看能得到較佳體驗</span></div>
 <h1 class="masthead-title">生成式AI融入基模表徵教學(SBI)<br/>對國中八年級學生函數學習成效之影響</h1>
 <p class="masthead-sub">準實驗研究設計　|　實驗組 Google Edu-AI＋基模表徵教學（<span class="stat-nowrap"><span class="stat-symbol">n</span> = 30</span>）　|　控制組 Google 搜尋＋基模表徵教學（<span class="stat-nowrap"><span class="stat-symbol">n</span> = 28</span>）</p>
 <div class="masthead-meta">
@@ -2016,6 +2016,167 @@ nav.tabs{ padding-top: 8px; }
   .masthead-inner::after{ right:18px; width:92px; }
   nav.tabs{ padding: 10px 14px 0; }
   main{ padding: 36px 18px 80px; }
+}
+
+
+/* ============== v37：手機／平板觀看修正 ==============
+   1. 恢復上欄橫置觀看提示。
+   2. 07整體統整：限制頁面與卡片寬度，避免卡片內不換行統計列撐出視窗。
+   3. 01–06 深藍色重點卡片中的灰色說明文字改為金棕色。 */
+.masthead .eyebrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.masthead .eyebrow-main {
+  color: var(--gold);
+}
+.masthead .orientation-hint {
+  color: #6faed6;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  line-height: 1.55;
+  text-transform: none;
+  white-space: normal;
+}
+.topic-card.featured .topic-key-label,
+.topic-card.featured .topic-key-label * {
+  color: #c69c45 !important;
+  font-weight: 800 !important;
+}
+#s7 {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+#s7 .sec-header,
+#s7 .conclusion,
+#s7 .overview-figure {
+  width: 100%;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#s7 .card-grid {
+  width: 100%;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr)) !important;
+  gap: 24px;
+}
+#s7 .topic-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+#s7 .topic-card *,
+#s7 .overview-figure,
+#s7 .overview-figure * {
+  max-width: 100%;
+}
+#s7 .s7c-head,
+#s7 .s7c-body,
+#s7 .s7c-brace-lines,
+#s7 .s7c-anc,
+#s7 .s7c-anc-rows,
+#s7 .s7c-tam,
+#s7 .s7c-prow {
+  min-width: 0;
+}
+#s7 .s7c-bline {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+#s7 .s7c-anc {
+  flex-wrap: wrap;
+}
+#s7 .overview-figure-frame {
+  max-width: 100%;
+  overflow: hidden;
+}
+#s7 .overview-figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+@media (max-width: 1024px) {
+  #s7 .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)) !important;
+    max-width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  #s7 .card-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 100%;
+  }
+  #s7 .s7c-head {
+    padding-right: 62px;
+  }
+  #s7 .s7c-body {
+    align-items: center;
+    padding: 8px 10px 2px 2px;
+    gap: 12px;
+  }
+  #s7 .s7c-mag {
+    width: 46px;
+    height: 46px;
+    top: 6px;
+    right: 0;
+  }
+  #s7 .s7c-brace-wrap,
+  #s7 .s7c-anc {
+    justify-content: center;
+  }
+  #s7 .s7c-anc {
+    gap: 10px;
+    padding-right: 42px;
+  }
+  #s7 .s7c-anc-name {
+    font-size: 17px;
+  }
+  #s7 .s7c-anc-rows .sym,
+  #s7 .s7c-anc-rows .eq,
+  #s7 .s7c-anc-rows .val {
+    font-size: 18px;
+  }
+  #s7 .s7c-bline {
+    font-size: 15.5px;
+    line-height: 1.45;
+    text-align: left;
+  }
+  #s7 .s7c-tam {
+    grid-template-columns: 1fr;
+    width: 100%;
+    justify-items: center;
+  }
+  #s7 .s7c-prow {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #s7 .s7c-sum-top {
+    padding-right: 46px;
+  }
+}
+@media (max-width: 640px) {
+  .masthead .eyebrow {
+    gap: 6px;
+  }
+  .masthead .orientation-hint {
+    flex-basis: 100%;
+    font-size: 12.5px;
+    letter-spacing: 0.3px;
+  }
+  #s7 .s7c-head .topic-title {
+    font-size: 18px;
+  }
+  #s7 .s7c-body {
+    padding-right: 4px;
+  }
 }
 </style>
 <section class="section active" id="s0">
