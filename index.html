@@ -1763,6 +1763,126 @@ nav.tabs .tabs-inner{ gap: 4px; }
   #s8 .s8-flow{ flex-direction: column; align-items: flex-start; }
 }
 </style>
+
+
+/* ============== v39：07 整體統整分頁框架重寫（平板橫置固定雙欄、前言完整換行） ============== */
+#s7 .s7-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: visible !important;
+}
+#s7 .sec-header {
+  width: 100%;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: visible !important;
+}
+#s7 .s7-intro-block {
+  width: 100%;
+  max-width: 940px;
+  overflow: visible !important;
+}
+#s7 .s7-intro-block .sec-desc {
+  display: block;
+  width: 100%;
+  max-width: 940px;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+  line-break: auto !important;
+  text-wrap: pretty;
+}
+#s7 .s7-desc-line {
+  margin-bottom: 8px;
+}
+#s7 .s7-desc-main {
+  margin-top: 0;
+}
+#s7 .card-grid {
+  display: grid !important;
+  width: 100%;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  align-items: stretch;
+}
+#s7 .card-grid .topic-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 265px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+#s7 .s7c-head,
+#s7 .s7c-body,
+#s7 .s7c-brace-wrap,
+#s7 .s7c-brace-lines,
+#s7 .s7c-anc,
+#s7 .s7c-anc-rows,
+#s7 .s7c-tam,
+#s7 .s7c-prow,
+#s7 .s7c-sum-row {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+#s7 .s7c-method,
+#s7 .s7c-small,
+#s7 .s7c-bline,
+#s7 .s7c-prow,
+#s7 .s7c-anc-rows,
+#s7 .s7c-sum-row,
+#s7 .s7c-summary {
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+  line-break: auto !important;
+}
+@media (min-width: 700px) and (max-width: 1100px) {
+  #s7 .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px !important;
+  }
+  #s7 .card-grid .topic-card {
+    min-height: 250px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  #s7 .s7c-head .topic-title {
+    font-size: 18px;
+  }
+  #s7 .s7c-method {
+    font-size: 16px;
+  }
+  #s7 .s7c-bline {
+    font-size: 15.5px;
+  }
+  #s7 .s7c-anc-name {
+    font-size: 17px;
+  }
+  #s7 .s7c-anc-rows .sym,
+  #s7 .s7c-anc-rows .eq,
+  #s7 .s7c-anc-rows .val {
+    font-size: 18px;
+  }
+}
+@media (max-width: 699px) {
+  #s7 .card-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 100% !important;
+    gap: 20px !important;
+  }
+  #s7 .card-grid .topic-card {
+    min-height: 245px;
+  }
+}
+
 </head>
 <body>
 <header class="masthead">
@@ -2670,7 +2790,10 @@ html, body {
 <div class="sec-header">
 <div class="sec-eyebrow">Overall Synthesis</div>
 <h2 class="sec-title">整體研究結果統整</h2>
-<p class="sec-desc">六節分析之核心發現一覽。本頁統整「生成式AI融入基模表徵教學(SBI)對國中八年級學生函數學習成效之影響」之第五章統計結果，作為口試時快速判讀研究結果的儀表板。</p>
+<div class="s7-intro-block">
+<p class="sec-desc s7-desc-line">六節分析之核心發現一覽。</p>
+<p class="sec-desc s7-desc-main">本頁統整「生成式 AI 融入基模表徵教學（SBI）對國中八年級學生函數學習成效之影響」之第五章統計結果，作為口試時快速判讀研究結果的儀表板。</p>
+</div>
 </div>
 <div class="card-grid">
 <div class="topic-card s7-card-green" data-modal="s7m1">
