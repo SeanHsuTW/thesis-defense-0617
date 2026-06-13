@@ -1764,31 +1764,68 @@ nav.tabs .tabs-inner{ gap: 4px; }
 }
 </style>
 
+<style id="v40-complete-cleanup">
+/* ============== v40：完整整理修正版 ==============
+   原則：從 v36 乾淨原檔重做，不沿用 v39 的外露 CSS。
+   目的：修正行動裝置上欄提示、07 分頁前言截斷、07 卡片框架、01–06 深藍卡片說明字色。
+*/
 
-/* ============== v39：07 整體統整分頁框架重寫（平板橫置固定雙欄、前言完整換行） ============== */
+/* 上欄：標題後方補橫置觀看提示，並允許手機/平板自動換行 */
+.eyebrow {
+  display: flex !important;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+}
+.eyebrow .eyebrow-main {
+  display: inline-block;
+}
+.eyebrow .device-hint {
+  color: #66b6d6;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: none;
+}
+
+/* 01–06 深藍色 featured 卡片：下方灰字改金棕色，提高對比 */
+.topic-card.featured .topic-key-label {
+  color: #d8b35f !important;
+  font-weight: 700 !important;
+}
+
+/* 07：建立與 01–06 分頁一致的置中容器與左右留白 */
+#s7 {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 #s7 .s7-container {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
-  overflow: visible !important;
+  overflow: visible;
 }
 #s7 .sec-header {
   width: 100%;
   max-width: 1080px;
   margin-left: auto;
   margin-right: auto;
-  overflow: visible !important;
+  overflow: visible;
 }
+
+/* 07 前言：改為兩段式，取消全站 keep-all 對此區造成的截斷 */
 #s7 .s7-intro-block {
   width: 100%;
-  max-width: 940px;
-  overflow: visible !important;
+  max-width: 980px;
+  overflow: visible;
 }
 #s7 .s7-intro-block .sec-desc {
   display: block;
   width: 100%;
-  max-width: 940px;
+  max-width: 980px;
   white-space: normal !important;
   word-break: normal !important;
   overflow-wrap: anywhere !important;
@@ -1801,49 +1838,81 @@ nav.tabs .tabs-inner{ gap: 4px; }
 #s7 .s7-desc-main {
   margin-top: 0;
 }
+
+/* 07 卡片框架：平板橫置與桌面固定雙欄，不再讓單一卡片撐成全寬長方形 */
 #s7 .card-grid {
   display: grid !important;
   width: 100%;
   max-width: 1080px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 44px !important;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 24px !important;
-  align-items: stretch;
+  align-items: stretch !important;
 }
 #s7 .card-grid .topic-card {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
   min-height: 265px;
-  overflow: hidden;
   box-sizing: border-box;
+  overflow: hidden;
 }
+
+/* 07 卡片內文字：避免長統計字串撐開卡片 */
 #s7 .s7c-head,
 #s7 .s7c-body,
+#s7 .s7c-method,
 #s7 .s7c-brace-wrap,
 #s7 .s7c-brace-lines,
 #s7 .s7c-anc,
 #s7 .s7c-anc-rows,
 #s7 .s7c-tam,
 #s7 .s7c-prow,
-#s7 .s7c-sum-row {
-  min-width: 0;
+#s7 .s7c-sum-row,
+#s7 .s7c-summary {
   max-width: 100%;
+  min-width: 0;
   box-sizing: border-box;
 }
 #s7 .s7c-method,
-#s7 .s7c-small,
-#s7 .s7c-bline,
+#s7 .s7c-summary,
 #s7 .s7c-prow,
 #s7 .s7c-anc-rows,
 #s7 .s7c-sum-row,
-#s7 .s7c-summary {
+#s7 .s7c-small {
   white-space: normal !important;
   word-break: normal !important;
   overflow-wrap: anywhere !important;
   line-break: auto !important;
 }
+#s7 .s7c-bline {
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+}
+#s7 .s7c-mag {
+  max-width: 54px;
+  max-height: 54px;
+}
+
+/* 07 總圖與結論：同樣限制寬度，避免圖片或結論區撐開版面 */
+#s7 .overview-figure,
+#s7 .conclusion {
+  width: 100%;
+  max-width: 1080px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+#s7 .overview-figure-frame,
+#s7 .overview-figure img {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 平板橫置常見寬度：維持兩欄，但縮小卡片內距與局部字級 */
 @media (min-width: 700px) and (max-width: 1100px) {
   #s7 .card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -1853,6 +1922,9 @@ nav.tabs .tabs-inner{ gap: 4px; }
     min-height: 250px;
     padding-left: 22px;
     padding-right: 22px;
+  }
+  #s7 .s7c-head {
+    padding-right: 72px;
   }
   #s7 .s7c-head .topic-title {
     font-size: 18px;
@@ -1869,10 +1941,16 @@ nav.tabs .tabs-inner{ gap: 4px; }
   #s7 .s7c-anc-rows .sym,
   #s7 .s7c-anc-rows .eq,
   #s7 .s7c-anc-rows .val {
-    font-size: 18px;
+    font-size: 19px;
   }
 }
+
+/* 手機直向：才改為單欄，保留可讀性 */
 @media (max-width: 699px) {
+  .eyebrow .device-hint {
+    font-size: 12px;
+    letter-spacing: 0.03em;
+  }
   #s7 .card-grid {
     grid-template-columns: 1fr !important;
     max-width: 100% !important;
@@ -1881,13 +1959,18 @@ nav.tabs .tabs-inner{ gap: 4px; }
   #s7 .card-grid .topic-card {
     min-height: 245px;
   }
+  #s7 .s7-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
+</style>
 
 </head>
 <body>
 <header class="masthead">
 <div class="masthead-inner">
-<div class="eyebrow"><span class="eyebrow-main">第五章 · 研究結果 · 互動式統計分析</span><span class="orientation-hint device-hint">【請將手機/平板橫置觀看能得到較佳體驗】</span></div>
+<div class="eyebrow"><span class="eyebrow-main">第五章 · 研究結果 · 互動式統計分析</span><span class="device-hint">【請將手機/平板橫置觀看能得到較佳體驗】</span></div>
 <h1 class="masthead-title">生成式AI融入基模表徵教學(SBI)<br/>對國中八年級學生函數學習成效之影響</h1>
 <p class="masthead-sub">準實驗研究設計　|　實驗組 Google Edu-AI＋基模表徵教學（<span class="stat-nowrap"><span class="stat-symbol">n</span> = 30</span>）　|　控制組 Google 搜尋＋基模表徵教學（<span class="stat-nowrap"><span class="stat-symbol">n</span> = 28</span>）</p>
 <div class="masthead-meta">
@@ -2136,232 +2219,6 @@ nav.tabs{ padding-top: 8px; }
   .masthead-inner::after{ right:18px; width:92px; }
   nav.tabs{ padding: 10px 14px 0; }
   main{ padding: 36px 18px 80px; }
-}
-
-
-/* ============== v37：手機／平板觀看修正 ==============
-   1. 恢復上欄橫置觀看提示。
-   2. 07整體統整：限制頁面與卡片寬度，避免卡片內不換行統計列撐出視窗。
-   3. 01–06 深藍色重點卡片中的灰色說明文字改為金棕色。 */
-.masthead .eyebrow {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-}
-.masthead .eyebrow-main {
-  color: var(--gold);
-}
-.masthead .orientation-hint {
-  color: #6faed6;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.6px;
-  line-height: 1.55;
-  text-transform: none;
-  white-space: normal;
-}
-.topic-card.featured .topic-key-label,
-.topic-card.featured .topic-key-label * {
-  color: #c69c45 !important;
-  font-weight: 800 !important;
-}
-#s7 {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-#s7 .sec-header,
-#s7 .conclusion,
-#s7 .overview-figure {
-  width: 100%;
-  max-width: 1080px;
-  margin-left: auto;
-  margin-right: auto;
-}
-#s7 .card-grid {
-  width: 100%;
-  max-width: 1080px;
-  margin-left: auto;
-  margin-right: auto;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr)) !important;
-  gap: 24px;
-}
-#s7 .topic-card {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  overflow: hidden;
-}
-#s7 .topic-card *,
-#s7 .overview-figure,
-#s7 .overview-figure * {
-  max-width: 100%;
-}
-#s7 .s7c-head,
-#s7 .s7c-body,
-#s7 .s7c-brace-lines,
-#s7 .s7c-anc,
-#s7 .s7c-anc-rows,
-#s7 .s7c-tam,
-#s7 .s7c-prow {
-  min-width: 0;
-}
-#s7 .s7c-bline {
-  white-space: normal;
-  overflow-wrap: anywhere;
-  word-break: normal;
-}
-#s7 .s7c-anc {
-  flex-wrap: wrap;
-}
-#s7 .overview-figure-frame {
-  max-width: 100%;
-  overflow: hidden;
-}
-#s7 .overview-figure img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-@media (max-width: 1024px) {
-  #s7 .card-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)) !important;
-    max-width: 100%;
-  }
-}
-@media (max-width: 900px) {
-  #s7 .card-grid {
-    grid-template-columns: 1fr !important;
-    max-width: 100%;
-  }
-  #s7 .s7c-head {
-    padding-right: 62px;
-  }
-  #s7 .s7c-body {
-    align-items: center;
-    padding: 8px 10px 2px 2px;
-    gap: 12px;
-  }
-  #s7 .s7c-mag {
-    width: 46px;
-    height: 46px;
-    top: 6px;
-    right: 0;
-  }
-  #s7 .s7c-brace-wrap,
-  #s7 .s7c-anc {
-    justify-content: center;
-  }
-  #s7 .s7c-anc {
-    gap: 10px;
-    padding-right: 42px;
-  }
-  #s7 .s7c-anc-name {
-    font-size: 17px;
-  }
-  #s7 .s7c-anc-rows .sym,
-  #s7 .s7c-anc-rows .eq,
-  #s7 .s7c-anc-rows .val {
-    font-size: 18px;
-  }
-  #s7 .s7c-bline {
-    font-size: 15.5px;
-    line-height: 1.45;
-    text-align: left;
-  }
-  #s7 .s7c-tam {
-    grid-template-columns: 1fr;
-    width: 100%;
-    justify-items: center;
-  }
-  #s7 .s7c-prow {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  #s7 .s7c-sum-top {
-    padding-right: 46px;
-  }
-}
-@media (max-width: 640px) {
-  .masthead .eyebrow {
-    gap: 6px;
-  }
-  .masthead .orientation-hint {
-    flex-basis: 100%;
-    font-size: 12.5px;
-    letter-spacing: 0.3px;
-  }
-  #s7 .s7c-head .topic-title {
-    font-size: 18px;
-  }
-  #s7 .s7c-body {
-    padding-right: 4px;
-  }
-}
-
-
-/* ============== v38：依實際 HTML 結構補強手機／平板版型 ==============
-   Gemini 建議的 page-title/tab07 為假設選擇器；本檔實際使用 .eyebrow 與 #s7。
-   本段用實際結構補上彈性標題提示與 07 分頁容器寬度限制。 */
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-.masthead .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-  max-width: 100%;
-}
-.masthead .device-hint {
-  color: #6faed6 !important;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  line-height: 1.55;
-  text-transform: none;
-}
-#s7 .s7-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-#s7 .s7-container > * {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-#s7 .card-grid,
-#s7 .overview-figure,
-#s7 .conclusion,
-#s7 .sec-header {
-  max-width: 1080px;
-  margin-left: auto;
-  margin-right: auto;
-}
-#s7 .topic-card,
-#s7 .topic-card * {
-  min-width: 0;
-}
-#s7 .s7c-method,
-#s7 .s7c-small,
-#s7 .s7c-bline,
-#s7 .s7c-prow,
-#s7 .s7c-anc-rows,
-#s7 .s7c-sum-row {
-  overflow-wrap: anywhere;
-}
-@media (max-width: 760px) {
-  .masthead .device-hint {
-    flex-basis: 100%;
-    font-size: 12.5px;
-    letter-spacing: 0.25px;
-  }
-  #s7 .s7-container {
-    padding: 0;
-  }
 }
 </style>
 <section class="section active" id="s0">
