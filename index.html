@@ -1966,6 +1966,118 @@ nav.tabs .tabs-inner{ gap: 4px; }
 }
 </style>
 
+
+<style id="v41-conclusion-fix">
+/* ============== v41：iPad mini 直立檢視－結論框架統一修正 ==============
+   問題來源：02/03/04 的結論文字較短，所以原框架看起來正常；00/01/05/06/07
+   的結論文字較長，且含 Google Edu-AI、Johnson-Neyman、UTAUT 等英文/符號段落，
+   在 iPad mini 直立寬度下容易因 inline 片段與 overflow:hidden 被裁切。
+   修正策略：不改統計內容，只統一結論盒框架、允許正常換行，並只在直立窄版調整內距與字級。 */
+.conclusion {
+  width: 100% !important;
+  max-width: 1080px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+.conclusion p {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  line-break: auto !important;
+  text-wrap: pretty;
+  margin-right: 0 !important;
+}
+.conclusion p *,
+.conclusion strong,
+.conclusion .stat-nowrap,
+.conclusion .stat-eta,
+.conclusion .eta-stack {
+  max-width: 100% !important;
+}
+.conclusion strong {
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+}
+.conclusion .stat-nowrap {
+  display: inline !important;
+  white-space: normal !important;
+}
+.conclusion .text-tiny {
+  display: inline !important;
+  color: rgba(244, 238, 224, 0.84) !important;
+  font-size: 0.78em !important;
+  line-height: 1.65 !important;
+}
+.conclusion::before {
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+.conclusion > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* iPad mini / iPad 直立：套用與 02/03/04 同樣的安全閱讀框架 */
+@media (max-width: 900px) and (orientation: portrait) {
+  main {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
+  .conclusion {
+    padding: 34px 34px 36px !important;
+    border-radius: 18px !important;
+  }
+  .conclusion-eyebrow {
+    font-size: 13px !important;
+    letter-spacing: 0.18em !important;
+    margin-bottom: 18px !important;
+  }
+  .conclusion p {
+    font-size: 18px !important;
+    line-height: 1.9 !important;
+    letter-spacing: 0.01em !important;
+  }
+  .conclusion::before {
+    font-size: clamp(72px, 15vw, 108px) !important;
+    right: 18px !important;
+    top: 28px !important;
+    letter-spacing: -0.06em !important;
+  }
+}
+
+/* 更窄的手機直立：再縮內距，避免文字被擠壓 */
+@media (max-width: 760px) and (orientation: portrait) {
+  main {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+  .conclusion {
+    padding: 28px 24px 30px !important;
+  }
+  .conclusion p {
+    font-size: 16.5px !important;
+    line-height: 1.86 !important;
+  }
+}
+
+/* Safari/iPadOS 對英文長詞與連字號換行較保守，補上 hyphen 行為 */
+@supports (-webkit-touch-callout: none) {
+  .conclusion p,
+  .conclusion strong {
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="masthead">
