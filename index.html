@@ -1610,13 +1610,13 @@ svg .stat-symbol { font-style: italic !important; font-family: 'Times New Roman'
 #s7 .s7c-box-w { background:#fff; color:#3a3f45; border:1px solid #cdd5dd; }
 #s7 .s7c-box-r { background:#ee342a; color:#fff; }
 
-/* ============== v31：回到 v27，全站文字只在句號／分號後允許斷行 ============== */
-/* 全站閱讀文字：避免中文句子被任意拆行；由腳本在「。」或「；」後插入可斷行點 */
+/* ============== iPad mini 可讀性：全站文字改回中文標準逐字斷行 ============== */
+/* 取代 v31 的 keep-all：避免長句溢出螢幕或整段跳行留白；表格／統計數字／按鈕等由下方例外維持不拆 */
 body,
 body * {
-  word-break: keep-all;
-  overflow-wrap: normal;
-  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+  line-break: auto;
 }
 
 /* 圖表、表格、統計數字、按鈕與導覽維持穩定，不強迫額外斷行 */
@@ -1829,18 +1829,6 @@ nav.tabs .tabs-inner{ gap: 4px; }
 #s0 .dg-note,
 #s0 .dg-legend > span,
 #s0 .conclusion p { max-width: min(100%, 1100px); }
-/* 行內斷行修正（本頁閱讀文字）：覆蓋全站 keep-all，改回中文逐字自然斷行，
-   消除 iPad mini 上「文字溢出螢幕」與「整段未斷字跳行造成的大片右側留白」。
-   stat-nowrap（如 n = 30）仍以 white-space:nowrap 保持不拆。 */
-#s0 .sec-desc, #s0 .sec-desc *,
-#s0 .dg-hdesc, #s0 .dg-hdesc *,
-#s0 .dg-note, #s0 .dg-note *,
-#s0 .dg-legend > span, #s0 .dg-legend > span *,
-#s0 .conclusion p, #s0 .conclusion p * {
-  word-break: normal !important;
-  overflow-wrap: anywhere !important;
-  line-break: auto !important;
-}
 /* 00 結論：保留右上「結論」浮水印的文繞排避讓，避讓區貼合浮水印尺寸 */
 #s0 .conclusion p::before { content:""; float:right; width: 200px; height: 3.1em; }
 #s0 svg text.dg-t  { font-family:'Noto Sans TC',sans-serif; font-weight:700; font-size:15px; }
@@ -2011,6 +1999,8 @@ nav.tabs{ padding-top: 8px; }
 .conclusion-eyebrow{ color:#f2c98b; }
 .conclusion p{ color:#f4eee0; }
 .conclusion strong{ color:#fff; border-bottom-color:#f2c98b; }
+/* 01 結論盒：唯一的深灰小字附註（J-N 附註）改米金色，深底上清楚可讀 */
+.conclusion .text-tiny { color: #f0d49c; }
 
 /* ---- 修正：iPad mini 直立時結論文字被右側裁切（水平溢出） ---- */
 /* 1) 任何分頁內容都不撐破視窗寬度（clip 不會破壞 sticky 分頁列） */
@@ -2033,6 +2023,15 @@ html, body { overflow-x: clip; }
 .modal-content{ background: var(--bg-modal); }
 .modal-close{ background: var(--bg); border-color: var(--line); color: var(--ink); }
 .modal-close:hover{ background: var(--exp); color:#fff; }
+/* 直向(iPad mini)浮動視窗修正：視窗框固定在螢幕內；過寬統計表改為窗內水平捲動，直向再縮小字級/內距讓多數表格免捲動 */
+.modal-content { min-width: 0; }
+.modal-body { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 820px) {
+  .modal-content { padding: 40px 18px 36px; }
+  .modal-body .data-table { font-size: 14px; }
+  .modal-body .data-table td:first-child { font-size: 14px; }
+  .modal-body .data-table th, .modal-body .data-table td { padding: 10px 9px; }
+}
 
 /* ---- 表格 / 圖表 / 統計卡：暖乳白 ---- */
 .data-table th{ background:#f4ecdb; color:var(--ink-mid); border-bottom-color:var(--line); }
@@ -2080,12 +2079,12 @@ html, body { overflow-x: clip; }
 <div class="sec-header">
 <div class="sec-eyebrow">Analytic Strategy　研究分析策略</div>
 <h2 class="sec-title">第五章　研究分析策略總覽</h2>
-<p class="sec-desc">本章六節依「描述統計 → 前置假設檢驗 → 主要分析 → 穩健性交叉檢核 → 下結論」之一致邏輯進行。前四節為兩組組間比較，依「前測是否同質」與「迴歸係數同質性是否違反」決定採用 ANCOVA或 Welch獨立樣本 <span class="stat-symbol">t</span>檢定；第五、六節為單組分析（僅實驗組，無對照組），採信度、單一樣本 <span class="stat-symbol">t</span>檢定與相關分析。</p>
+<p class="sec-desc">本章六節依「描述統計 → 前置假設檢驗 → 主要分析 → 穩健性交叉檢核 → 下結論」之一致邏輯進行。前四節為兩組組間比較，依「前測是否同質」與「迴歸係數同質性是否違反」決定採用 ANCOVA 或 Welch獨立樣本 <span class="stat-symbol">t</span>檢定；第五、六節為單組分析（僅實驗組，無對照組），採信度、單一樣本 <span class="stat-symbol">t</span>檢定 與相關分析。</p>
 </div>
 <div class="dg-wrap">
 <div class="dg-cap">Track A · Section 01–04</div>
 <div class="dg-htitle">前四節｜兩組組間比較決策流程</div>
-<div class="dg-hdesc">同一套決策邏輯跑四次，差別僅在兩個分岔：（1）兩組前測是否同質；（2）ANCOVA的迴歸係數同質性假設是否違反。最終結論一律需「多種方法方向收斂」才下定論。</div>
+<div class="dg-hdesc">同一套決策邏輯跑四次，差別僅在兩個分岔：（1）兩組前測是否同質；（2）ANCOVA 的迴歸係數同質性假設是否違反。最終結論一律需「多種方法方向收斂」才下定論。</div>
 <svg aria-label="第一至四節組間比較分析策略決策流程圖" role="img" style="max-width:1118px;display:block;margin:0 auto;" viewbox="0 0 760 660" width="100%">
 <defs><marker id="arrA" markerheight="6.5" markerwidth="6.5" orient="auto-start-reverse" refx="8" refy="5" viewbox="0 0 10 10"><path d="M2 1L8 5L2 9" fill="none" stroke="#6a6a6a" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path></marker></defs>
 <rect fill="#f0ebe1" height="54" rx="8" stroke="#d8d2c4" stroke-width="1" width="260" x="250" y="20"></rect>
@@ -2094,8 +2093,8 @@ html, body { overflow-x: clip; }
 <line marker-end="url(#arrA)" stroke="#6a6a6a" stroke-width="1.5" x1="380" x2="380" y1="74" y2="94"></line>
 <rect fill="#dde9f0" height="78" rx="8" stroke="#2c5a78" stroke-width="1" width="312" x="224" y="96"></rect>
 <text class="dg-t" fill="#234a63" text-anchor="middle" x="380" y="119">前測同質性檢定</text>
-<text class="dg-s" fill="#2c5a78" text-anchor="middle" x="380" y="140">① Levene檢定｜兩組散佈是否相似</text>
-<text class="dg-s" fill="#2c5a78" text-anchor="middle" x="380" y="159">② Welch獨立樣本 <tspan class="stat-symbol">t</tspan>檢定｜兩組起點是否相近</text>
+<text class="dg-s" fill="#2c5a78" text-anchor="middle" x="380" y="140">① Levene 檢定｜兩組散佈是否相似</text>
+<text class="dg-s" fill="#2c5a78" text-anchor="middle" x="380" y="159">② Welch 獨立樣本 <tspan class="stat-symbol">t</tspan>檢定｜兩組起點是否相近</text>
 <line marker-end="url(#arrA)" stroke="#6a6a6a" stroke-width="1.5" x1="380" x2="380" y1="174" y2="194"></line>
 <rect fill="#dde9f0" height="64" rx="8" stroke="#2c5a78" stroke-width="1" width="276" x="242" y="196"></rect>
 <text class="dg-t" fill="#234a63" text-anchor="middle" x="380" y="220">組內前後測差異（成對樣本 <tspan class="stat-symbol">t</tspan>檢定）</text>
@@ -2108,7 +2107,7 @@ html, body { overflow-x: clip; }
 <text class="dg-t" fill="#2a5184" text-anchor="middle" x="190" y="338">檢驗迴歸係數同質性</text>
 <text class="dg-s" fill="#3e6fa3" text-anchor="middle" x="190" y="357">組別 × 前測 交互作用</text>
 <rect fill="#f7ecd6" height="72" rx="8" stroke="#c98a2a" stroke-width="1" width="244" x="468" y="316"></rect>
-<text class="dg-t" fill="#7d5a18" text-anchor="middle" x="590" y="338">ANCOVA控制前測</text>
+<text class="dg-t" fill="#7d5a18" text-anchor="middle" x="590" y="338">ANCOVA 控制前測</text>
 <text class="dg-s" fill="#a06a1c" text-anchor="middle" x="590" y="357">第二、三節：興趣、態度</text>
 <text class="dg-s" fill="#b8482f" text-anchor="middle" x="590" y="376">兩組起點不同</text>
 <path d="M190 370 L190 396 L130 396 L130 436" fill="none" marker-end="url(#arrA)" stroke="#6a6a6a" stroke-width="1.5"></path>
@@ -2116,12 +2115,12 @@ html, body { overflow-x: clip; }
 <text class="dg-l" fill="#2a5184" text-anchor="middle" x="118" y="390">未違反</text>
 <text class="dg-l" fill="#8a3522" text-anchor="middle" x="352" y="390">違反</text>
 <rect fill="#dde8f5" height="68" rx="8" stroke="#3e6fa3" stroke-width="1" width="200" x="30" y="438"></rect>
-<text class="dg-t" fill="#2a5184" text-anchor="middle" x="130" y="461">以 ANCOVA為主</text>
+<text class="dg-t" fill="#2a5184" text-anchor="middle" x="130" y="461">以 ANCOVA 為主</text>
 <text class="dg-s" fill="#2a5184" text-anchor="middle" x="130" y="480">控制前測</text>
 <text class="dg-s" fill="#3e6fa3" text-anchor="middle" x="130" y="497">第四節：數學焦慮</text>
 <rect fill="#f7e2da" height="68" rx="8" stroke="#b8482f" stroke-width="1" width="200" x="250" y="438"></rect>
 <text class="dg-t" fill="#8a3522" text-anchor="middle" x="350" y="461">改採 J-N 為主</text>
-<text class="dg-s" fill="#b8482f" text-anchor="middle" x="350" y="480">第一節：Welch <tspan class="stat-symbol">t</tspan>檢定</text>
+<text class="dg-s" fill="#b8482f" text-anchor="middle" x="350" y="480">第一節：Welch  <tspan class="stat-symbol">t</tspan>檢定</text>
 <text class="dg-s" fill="#b8482f" text-anchor="middle" x="350" y="497">輔助以佐證</text>
 <line marker-end="url(#arrA)" stroke="#6a6a6a" stroke-width="1.5" x1="590" x2="590" y1="388" y2="516"></line>
 <line marker-end="url(#arrA)" stroke="#6a6a6a" stroke-width="1.5" x1="130" x2="130" y1="506" y2="516"></line>
@@ -2135,8 +2134,8 @@ html, body { overflow-x: clip; }
 </svg>
 <div class="dg-legend">
 <span><i class="dg-sw" style="background:#dde8f5;border:1px solid #3e6fa3;"></i>藍：假設成立 / 起點同質，最穩健的 ANCOVA（第四節）</span>
-<span><i class="dg-sw" style="background:#f7ecd6;border:1px solid #c98a2a;"></i>黃：起點不同質，以 ANCOVA控制前測，解讀須謹慎（第二、三節）</span>
-<span><i class="dg-sw" style="background:#f7e2da;border:1px solid #b8482f;"></i>橘：迴歸同質性違反，改採 Johnson-Neyman顯著區間為主、Welch獨立樣本 <span class="stat-symbol">t</span>檢定為輔（第一節）</span>
+<span><i class="dg-sw" style="background:#f7ecd6;border:1px solid #c98a2a;"></i>黃：起點不同質，以 ANCOVA 控制前測，解讀須謹慎（第二、三節）</span>
+<span><i class="dg-sw" style="background:#f7e2da;border:1px solid #b8482f;"></i>橘：迴歸同質性違反，改採 Johnson-Neyman 顯著區間為主、Welch獨立樣本 <span class="stat-symbol">t</span>檢定 為輔（第一節）</span>
 </div>
 </div>
 <div class="dg-wrap dg-b">
