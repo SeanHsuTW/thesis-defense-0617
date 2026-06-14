@@ -1782,8 +1782,10 @@ nav.tabs .tabs-inner{ gap: 4px; }
   #s8 .s8-flow{ flex-direction: column; align-items: flex-start; }
   /* 直向：表格整列在上；下一列 米色 L檢定(左) ＋ 藍色 其他三法(右) 並排 */
   #s8 .s8-table-wrap{ align-items: flex-start; }
-  #s8 .s8-levene{ flex: 1 1 0; order: 2; }
-  #s8 .s8-alt{ flex: 1 1 0; min-width: 0; order: 3; }
+  #s8 .s8-levene{ flex: 6 1 0; order: 2; }
+  #s8 .s8-alt{ flex: 4 1 0; min-width: 0; order: 3; }
+  /* L檢定流程：箭頭與「有顯著/無顯著」鎖同一行不直書，只讓說明文字換行 */
+  #s8 .s8-flow-row > .s8-arrow, #s8 .s8-flow-row > b { flex: 0 0 auto; white-space: nowrap; }
 }
 </style>
 </head>
