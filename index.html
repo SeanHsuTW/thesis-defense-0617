@@ -1790,7 +1790,7 @@ nav.tabs .tabs-inner{ gap: 4px; }
 <span class="rotate-hint">請將手機／平板橫置觀看能得到較佳體驗</span>
 </div>
 <h1 class="masthead-title">生成式AI融入基模表徵教學(SBI)<br/>對國中八年級學生函數學習成效之影響</h1>
-<p class="masthead-sub">準實驗研究設計　|　實驗組 Google Edu-AI＋基模表徵教學(<span class="stat-nowrap"><span class="stat-symbol">n</span> = 30</span>)　|　控制組 Google 搜尋＋基模表徵教學(<span class="stat-nowrap"><span class="stat-symbol">n</span> = 28</span>)</p>
+<p class="masthead-sub">準實驗研究設計　|　實驗組 Google Edu-AI＋基模表徵教學<span class="stat-nowrap">(<span class="stat-symbol">n</span> = 30)</span>　|　控制組 Google 搜尋＋基模表徵教學<span class="stat-nowrap">(<span class="stat-symbol">n</span> = 28)</span></p>
 <div class="masthead-meta">
 <span>有效樣本　<strong><span class="stat-nowrap"><span class="stat-symbol">N</span> = 58</span></strong></span>
 <span>實驗組　<strong><span class="stat-nowrap"><span class="stat-symbol">n</span> = 30</span></strong></span>
@@ -1818,16 +1818,23 @@ nav.tabs .tabs-inner{ gap: 4px; }
 #s0 .dg-cap { font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:6px; }
 #s0 .dg-htitle { font-size:23px; font-weight:800; letter-spacing:-0.3px; margin-bottom:8px; }
 #s0 .dg-hdesc { font-size:16px; color:var(--ink-soft); line-height:1.75; margin-bottom:22px; max-width:880px; }
-#s0 .dg-note { font-size:14px; color:var(--ink-mid); background:var(--info-bg); border-left:4px solid var(--info); padding:12px 18px; border-radius:0 8px 8px 0; margin-bottom:20px; line-height:1.7; max-width:15cm; overflow-wrap:anywhere; }
-#s0 .dg-legend { display:flex; flex-wrap:wrap; gap:18px; margin-top:18px; padding-top:18px; border-top:1px solid var(--line-soft); font-size:14px; color:var(--ink-soft); }
-#s0 .dg-legend > span { display:block; position:relative; padding-left:26px; flex:1 1 260px; line-height:1.6; }
+#s0 .dg-note { font-size:14px; color:var(--ink-mid); background:var(--info-bg); border-left:4px solid var(--info); padding:12px 18px; border-radius:0 8px 8px 0; margin-bottom:20px; line-height:1.7; max-width:16cm; overflow-wrap:anywhere; }
+#s0 .dg-legend { display:flex; flex-direction:column; gap:14px; margin-top:18px; padding-top:18px; border-top:1px solid var(--line-soft); font-size:14px; color:var(--ink-soft); }
+#s0 .dg-legend > span { display:block; position:relative; padding-left:26px; max-width:15.5cm; line-height:1.6; }
 #s0 .dg-legend > span > .dg-sw { position:absolute; left:0; top:4px; }
 #s0 .dg-sw { width:16px; height:16px; border-radius:4px; display:inline-block; }
 /* 換行寬度設定（依使用者指定的 cm） */
-#s0 .sec-desc { max-width: 17.5cm; }       /* 00 分析策略大前言：17.5cm 才換行 */
-#s0 .dg-b .dg-hdesc { max-width: 15cm; }   /* Track B 前言：15cm 才換行 */
-/* 00 結論：首行限 12cm（避開右上「結論」浮水印），其餘行自然滿版 */
-#s0 .conclusion p::before { content:""; float:right; width: calc(100% - 12cm); height: 1.55em; }
+#s0 .sec-desc { max-width: 17cm; }       /* 00 分析策略大前言：直向 17cm */
+#s0 .dg-b .dg-hdesc { max-width: 16cm; }   /* Track B 前言：直向 16cm */
+/* 00 結論：文字自動繞開右上「結論」浮水印；避讓區貼合浮水印尺寸以免多餘留白。
+   橫向(>820px)浮水印 100px → 寬 5.4cm、高 3.2em；直向(≤820px)浮水印 76px 於下方 820px media query 縮小 */
+#s0 .conclusion p::before { content:""; float:right; width: 5.4cm; height: 3.2em; }
+/* 橫向(landscape)換行寬度：總覽 19cm、Track B 前言與藍底補充 18cm */
+@media (orientation: landscape) {
+  #s0 .sec-desc { max-width: 19cm; }
+  #s0 .dg-b .dg-hdesc { max-width: 18cm; }
+  #s0 .dg-note { max-width: 18cm; }
+}
 #s0 svg text.dg-t  { font-family:'Noto Sans TC',sans-serif; font-weight:700; font-size:15px; }
 #s0 svg text.dg-s  { font-family:'Noto Sans TC',sans-serif; font-weight:500; font-size:12px; }
 #s0 svg text.dg-l  { font-family:'Noto Sans TC',sans-serif; font-weight:600; font-size:12.5px; }
@@ -2009,6 +2016,8 @@ html, body { overflow-x: clip; }
   .conclusion { padding: 26px 22px; }
   .conclusion::before { font-size: 76px; top: 16px; right: 16px; letter-spacing: -2px; }
   .conclusion p { max-width: calc(100vw - 88px); }
+  /* 直向：浮水印 76px → 避讓區縮小貼合，文字繞開且不留多餘空白 */
+  #s0 .conclusion p::before { width: 4.1cm; height: 2.2em; }
 }
 
 /* ---- Modal：暖色遮罩 + 乳白紙 ---- */
@@ -2142,24 +2151,24 @@ html, body { overflow-x: clip; }
 <text class="dg-t" fill="#2e6a0f" text-anchor="middle" x="380" y="186">本問卷信效度皆過關</text>
 <line marker-end="url(#arrB)" stroke="#6a6a6a" stroke-width="1.5" x1="380" x2="380" y1="204" y2="216"></line>
 <g transform="translate(0,130)">
-<rect fill="#dde9f0" height="54" rx="8" stroke="#2c5a78" stroke-width="1" width="316" x="222" y="88"></rect>
+<rect fill="#dde9f0" height="54" rx="8" stroke="#2c5a78" stroke-width="1" width="268" x="246" y="88"></rect>
 <text class="dg-t" fill="#234a63" text-anchor="middle" x="380" y="110">描述統計 ＋ 單一樣本 <tspan class="stat-symbol">t</tspan>檢定</text>
 <text class="dg-s" fill="#2c5a78" text-anchor="middle" x="380" y="129">檢定值 ＝ 五點量表中立值 3</text>
 <line marker-end="url(#arrB)" stroke="#6a6a6a" stroke-width="1.5" x1="380" x2="380" y1="142" y2="162"></line>
-<rect fill="#dde9f0" height="54" rx="8" stroke="#2c5a78" stroke-width="1" width="316" x="222" y="164"></rect>
+<rect fill="#dde9f0" height="54" rx="8" stroke="#2c5a78" stroke-width="1" width="268" x="246" y="164"></rect>
 <text class="dg-t" fill="#234a63" text-anchor="middle" x="380" y="186">Pearson 積差相關（向度間）</text>
 <text class="dg-s" fill="#2c5a78" text-anchor="middle" x="380" y="205">第五節：TAM 核心命題 PU × PEOU</text>
 <line marker-end="url(#arrB)" stroke="#6a6a6a" stroke-width="1.5" x1="380" x2="380" y1="218" y2="238"></line>
-<rect fill="#dde9f0" height="54" rx="8" stroke="#2c5a78" stroke-width="1" width="350" x="205" y="240"></rect>
+<rect fill="#dde9f0" height="54" rx="8" stroke="#2c5a78" stroke-width="1" width="268" x="246" y="240"></rect>
 <text class="dg-t" fill="#234a63" text-anchor="middle" x="380" y="262">Pearson 相關：接受度 × 學習結果</text>
 <text class="dg-s" fill="#2c5a78" text-anchor="middle" x="380" y="281">學習成效類　／　情意指標類</text>
 <line marker-end="url(#arrB)" stroke="#6a6a6a" stroke-width="1.5" x1="380" x2="380" y1="294" y2="314"></line>
-<rect fill="#f0ebe1" height="44" rx="8" stroke="#d8d2c4" stroke-width="1.4" width="264" x="248" y="316"></rect>
+<rect fill="#f0ebe1" height="44" rx="8" stroke="#d8d2c4" stroke-width="1.4" width="268" x="246" y="316"></rect>
 <text class="dg-t" fill="#3d3d3d" text-anchor="middle" x="380" y="343">關聯性結論（不推論因果）</text>
 </g>
 </svg>
 </div>
-<div class="conclusion"><div class="conclusion-eyebrow">為什麼這樣設計</div><p>準實驗（兩班常態編班、非隨機分派）必須處理「起點差異」，因此每個依變項皆先做前測同質性檢定，再決定主要分析方法：起點同質且假設成立者用 ANCOVA、假設違反者改以 Johnson-Neyman 界定顯著區間（並輔以 Welch獨立樣本 <span class="stat-symbol">t</span>檢定 交叉檢核）、起點不同質者以 ANCOVA 控制前測。所有結論皆以「ANCOVA／後測 Welch獨立樣本 <span class="stat-symbol">t</span>檢定／進步分數 Welch獨立樣本 <span class="stat-symbol">t</span>檢定 方向一致」為下定論之依據，<strong>單一方法達顯著但其他方法不收斂時即不過度推論</strong>。第五、六節因無對照組，改以接受度本身是否顯著正向（單一樣本 <span class="stat-symbol">t</span>檢定）及其與學習結果之關聯（Pearson <span class="stat-symbol">r</span>）回答研究問題，並一律採關聯性而非因果解釋。</p></div>
+<div class="conclusion"><div class="conclusion-eyebrow">為什麼這樣設計</div><p>準實驗（兩班常態編班、非隨機分派）必須處理「起點差異」，因此每個依變項皆先做前測同質性檢定，再決定主要分析方法：起點同質且假設成立者用 ANCOVA、假設違反者改以 Johnson-Neyman 界定顯著區間（並輔以 Welch獨立樣本 <span class="stat-symbol">t</span>檢定 交叉檢核）、起點不同質者以 ANCOVA 控制前測。所有結論皆以「ANCOVA／後測 Welch獨立樣本 <span class="stat-symbol">t</span>檢定／進步分數 Welch獨立樣本 <span class="stat-symbol">t</span>檢定 方向一致」為下定論之依據，<strong>單一方法達顯著，但其他方法不收斂時，實驗的結果不做過度的推論。</strong>第五、六節因無對照組，改以接受度本身是否顯著正向（單一樣本 <span class="stat-symbol">t</span>檢定）及其與學習結果之關聯（Pearson <span class="stat-symbol">r</span>）回答研究問題，並一律採關聯性而非因果解釋。</p></div>
 </section>
 <section class="section" id="s1">
 <div class="sec-header">
@@ -4507,43 +4516,4 @@ stripLeadingZeroDnums(document.body);
   }
 
   function init() {
-    applyAll(document.body);
-    const observer = new MutationObserver(function (mutations) {
-      let shouldApply = false;
-      mutations.forEach(function (m) {
-        if (m.addedNodes && m.addedNodes.length) shouldApply = true;
-      });
-      if (shouldApply) scheduleApply();
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { setTimeout(init, 0); });
-  } else {
-    setTimeout(init, 0);
-  }
-})();
-</script>
-<script id="s8-flowline-js">
-/* 08 補充說明：人數要相近 → 均衡樣本 紅色肘形指引線 */
-(function(){
-  function drawS8Flowline(){
-    var panel = document.querySelector('#s8 .s8-panel');
-    var path  = document.getElementById('s8-flowline-path');
-    var box   = document.getElementById('s8-close-box');
-    var bal   = document.getElementById('s8-balance-box');
-    if(!panel || !path || !box || !bal) return;
-    var pr = panel.getBoundingClientRect();
-    if(pr.width === 0) return; // 分頁尚未顯示
-    var br = box.getBoundingClientRect();
-    var ar = bal.getBoundingClientRect();
-    // 起點：紅框右緣中點；通道：第三/四欄交界（紅框右緣再外推一段）；終點：均衡樣本左緣
-    var sx = br.right - pr.left + 4;
-    var sy = br.top - pr.top + br.height/2;
-    var laneCell = box.closest('td');
-    var lx = laneCell ? (laneCell.getBoundingClientRect().right - pr.left - 2) : (sx + 26);
-    var ey = ar.top - pr.top + ar.height/2;
-    var aL = ar.left - pr.left, aR = ar.right - pr.left, aB = ar.bottom - pr.top;
-    var d;
-    if (lx < aL - 12) {            // 通道在�
+    applyAll(document.bod
