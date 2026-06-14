@@ -1777,13 +1777,13 @@ nav.tabs .tabs-inner{ gap: 4px; }
 #s8 .s8-levene{ flex: 1 1 100%; min-width: 0; }
 @media (max-width: 860px){
   #s8 .s8-panel-head{ align-items: flex-start; }
-  #s8 .s8-table{ font-size: 14px; flex-basis: 100%; }
   #s8 .s8-table th, #s8 .s8-table td{ padding: 9px 8px; }
   #s8 .s8-flow{ flex-direction: column; align-items: flex-start; }
-  /* 直向：表格整列在上；下一列 米色 L檢定(左) ＋ 藍色 其他三法(右) 並排 */
-  #s8 .s8-table-wrap{ align-items: flex-start; }
-  #s8 .s8-levene{ flex: 6 1 0; order: 2; }
-  #s8 .s8-alt{ flex: 4 1 0; min-width: 0; order: 3; }
+  /* 直向：用 grid — 表格整列在上；下一列 米色 L檢定(左,寬) ＋ 藍色 其他三法(右,貼合內容寬)、上緣對齊 */
+  #s8 .s8-table-wrap{ display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 16px 20px; align-items: start; }
+  #s8 .s8-table{ grid-column: 1 / -1; font-size: 14px; }
+  #s8 .s8-levene{ grid-column: 1; }
+  #s8 .s8-alt{ grid-column: 2; text-align: center; }
   /* L檢定流程：箭頭與「有顯著/無顯著」鎖同一行不直書，只讓說明文字換行 */
   #s8 .s8-flow-row > .s8-arrow, #s8 .s8-flow-row > b { flex: 0 0 auto; white-space: nowrap; }
 }
@@ -2647,21 +2647,21 @@ html, body { overflow-x: clip; }
 </table>
 <div class="s8-alt">
 <div class="s8-alt-title">「其他三法」替代方案</div>
-<div>穩健 ANCOVA（robust ANCOVA）</div>
-<div>資料轉換（Data Transformation）</div>
-<div>無母數共變數分析<br>（Quade's Nonparametric ANCOVA）</div>
+<div>穩健 ANCOVA<br>（robust ANCOVA）</div>
+<div>資料轉換<br>（Data Transformation）</div>
+<div>無母數共變數分析<br>（Quade's Nonparametric<br>ANCOVA）</div>
 </div>
 
 <div class="s8-levene">
-<p class="s8-levene-lead">L 檢定不是決定要不要用 ANCOVA 分析的關鍵，<br>它是用來看各組的散佈結構（鐘型形狀）有沒有相似。</p>
+<p class="s8-levene-lead">L 檢定不是決定要不要用 ANCOVA 分析的關鍵，它是用來看各組的散佈結構（鐘型形狀）有沒有相似。</p>
 <ol class="s8-levene-list">
 <li>
 <div class="s8-case-title">在【獨立樣本 <span class="stat-symbol">t</span>檢定】的時候</div>
 <div class="s8-flow">
 <span class="s8-flow-head">L 檢定</span>
 <span class="s8-flow-branches">
-<span class="s8-flow-row"><span class="s8-arrow">→</span><b class="s8-red">有顯著</b><span class="s8-arrow">→</span><span>看「不假設變異數相等」那一列</span></span>
-<span class="s8-flow-row"><span class="s8-arrow">→</span><b>無顯著</b><span class="s8-arrow">→</span><span>看「假設變異數相等」那一列</span></span>
+<span class="s8-flow-row"><span class="s8-arrow">→</span><b>有顯著</b><span class="s8-arrow">→</span><span>看「不假設變異數相等」那一列</span></span>
+<span class="s8-flow-row"><span class="s8-arrow">→</span><b class="s8-red">無顯著</b><span class="s8-arrow">→</span><span>看「<span class="s8-red">假設變異數相等</span>」那一列</span></span>
 </span>
 </div>
 </li>
