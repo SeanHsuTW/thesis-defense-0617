@@ -1829,6 +1829,18 @@ nav.tabs .tabs-inner{ gap: 4px; }
 #s0 .dg-note,
 #s0 .dg-legend > span,
 #s0 .conclusion p { max-width: min(100%, 1100px); }
+/* 行內斷行修正（本頁閱讀文字）：覆蓋全站 keep-all，改回中文逐字自然斷行，
+   消除 iPad mini 上「文字溢出螢幕」與「整段未斷字跳行造成的大片右側留白」。
+   stat-nowrap（如 n = 30）仍以 white-space:nowrap 保持不拆。 */
+#s0 .sec-desc, #s0 .sec-desc *,
+#s0 .dg-hdesc, #s0 .dg-hdesc *,
+#s0 .dg-note, #s0 .dg-note *,
+#s0 .dg-legend > span, #s0 .dg-legend > span *,
+#s0 .conclusion p, #s0 .conclusion p * {
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+  line-break: auto !important;
+}
 /* 00 結論：保留右上「結論」浮水印的文繞排避讓，避讓區貼合浮水印尺寸 */
 #s0 .conclusion p::before { content:""; float:right; width: 200px; height: 3.1em; }
 #s0 svg text.dg-t  { font-family:'Noto Sans TC',sans-serif; font-weight:700; font-size:15px; }
