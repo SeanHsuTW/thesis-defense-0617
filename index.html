@@ -1781,9 +1781,9 @@ nav.tabs .tabs-inner{ gap: 4px; }
   #s8 .s8-flow{ flex-direction: column; align-items: flex-start; }
   /* 直向：用 grid — 表格整列在上；下一列 米色 L檢定(左,寬) ＋ 藍色 其他三法(右,貼合內容寬)、上緣對齊 */
   #s8 .s8-table-wrap{ display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 16px 20px; align-items: start; }
-  #s8 .s8-table{ grid-column: 1 / -1; font-size: 14px; }
-  #s8 .s8-levene{ grid-column: 1; }
-  #s8 .s8-alt{ grid-column: 2; text-align: center; }
+  #s8 .s8-table{ grid-column: 1 / -1; grid-row: 1; font-size: 14px; }
+  #s8 .s8-levene{ grid-column: 1; grid-row: 2; }
+  #s8 .s8-alt{ grid-column: 2; grid-row: 2; text-align: center; }
   /* L檢定流程：箭頭與「有顯著/無顯著」鎖同一行不直書，只讓說明文字換行 */
   #s8 .s8-flow-row > .s8-arrow, #s8 .s8-flow-row > b { flex: 0 0 auto; white-space: nowrap; }
 }
