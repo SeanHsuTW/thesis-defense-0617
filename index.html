@@ -1775,6 +1775,7 @@ nav.tabs .tabs-inner{ gap: 4px; }
 #s8 .s8-arrow{ color: var(--ink-mid); font-weight: 800; }
 @media (max-width: 860px){
   #s8 .s8-panel-head{ align-items: flex-start; }
+  #s8 .s8-table-wrap{ flex-direction: column; align-items: stretch; }
   #s8 .s8-table{ font-size: 14px; }
   #s8 .s8-table th, #s8 .s8-table td{ padding: 9px 8px; }
   #s8 .s8-flow{ flex-direction: column; align-items: flex-start; }
@@ -2023,10 +2024,14 @@ html, body { overflow-x: clip; }
 .modal-content{ background: var(--bg-modal); }
 .modal-close{ background: var(--bg); border-color: var(--line); color: var(--ink); }
 .modal-close:hover{ background: var(--exp); color:#fff; }
-/* 浮動視窗修正（iPad mini）：視窗固定在螢幕內；內容自動縮放到剛好、全部固定、不水平捲動 */
+/* 浮動視窗修正（iPad mini）：視窗固定在螢幕內、只可上下捲動；表格自動縮到剛好、不水平溢出 */
+.modal-overlay { overflow-x: hidden; }                 /* 鎖死左右捲動，保留上下捲動 */
 .modal-content { min-width: 0; }
 .modal-body img, .modal-body canvas { max-width: 100%; height: auto; }
 .data-table th, .data-table td { white-space: nowrap; }   /* 標籤一律橫書，不被壓成直行 */
+.modal-body .data-table { font-size: 14px; }                                    /* 橫向也略縮，整張塞進視窗 */
+.modal-body .data-table td:first-child { font-size: 14px; }
+.modal-body .data-table th, .modal-body .data-table td { padding: 10px 12px; }
 @media (max-width: 820px) {
   .modal-content { padding: 40px 16px 34px; }
   .modal-body .row-2 { grid-template-columns: 1fr 1fr; gap: 14px; }  /* 直向卡片維持兩欄並排 */
@@ -4502,4 +4507,86 @@ stripLeadingZeroDnums(document.body);
 
     tips.forEach(function (el) {
       if (!el || el.dataset.tooltipPunctuationBreakApplied === '1') return;
-      const original = el.getAttribute('data-tip')
+      const original = el.getAttribute('data-tip');
+      if (!original) return;
+      el.setAttribute('data-tip', breakTooltipText(original));
+      el.dataset.tooltipPunctuationBreakApplied = '1';
+    });
+  }
+
+  let scheduled = false;
+  function applyAll(root) {
+    applyPunctuationBreaks(root || document.body);
+    applyTooltipPunctuationBreaks(root || document.body);
+  }
+
+  function scheduleApply() {
+    if (scheduled) return;
+    scheduled = true;
+    setTimeout(function () {
+      scheduled = false;
+      applyAll(document.body);
+    }, 0);
+  }
+
+  function init() {
+    applyAll(document.body);
+    const observer = new MutationObserver(function (mutations) {
+      let shouldApply = false;
+      mutations.forEach(function (m) {
+        if (m.addedNodes && m.addedNodes.length) shouldApply = true;
+      });
+      if (shouldApply) scheduleApply();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(init, 0); });
+  } else {
+    setTimeout(init, 0);
+  }
+})();
+</script>
+<script id="s8-flowline-js">
+/* 08 補充說明：人數要相近 → 均衡樣本 紅色肘形指引線 */
+(function(){
+  function drawS8Flowline(){
+    var panel = document.querySelector('#s8 .s8-panel');
+    var path  = document.getElementById('s8-flowline-path');
+    var box   = document.getElementById('s8-close-box');
+    var bal   = document.getElementById('s8-balance-box');
+    if(!panel || !path || !box || !bal) return;
+    var pr = panel.getBoundingClientRect();
+    if(pr.width === 0) return; // 分頁尚未顯示
+    var br = box.getBoundingClientRect();
+    var ar = bal.getBoundingClientRect();
+    // 起點：紅框右緣中點；通道：第三/四欄交界（紅框右緣再外推一段）；終點：均衡樣本左緣
+    var sx = br.right - pr.left + 4;
+    var sy = br.top - pr.top + br.height/2;
+    var laneCell = box.closest('td');
+    var lx = laneCell ? (laneCell.getBoundingClientRect().right - pr.left - 2) : (sx + 26);
+    var ey = ar.top - pr.top + ar.height/2;
+    var aL = ar.left - pr.left, aR = ar.right - pr.left, aB = ar.bottom - pr.top;
+    var d;
+    if (lx < aL - 12) {            // 通道在註記左側：向右指入左緣
+      d = 'M'+sx+' '+sy+' L'+lx+' '+sy+' L'+lx+' '+ey+' L'+(aL-8)+' '+ey;
+    } else if (lx > aR + 12) {     // 通道在註記右側：向左指入右緣
+      d = 'M'+sx+' '+sy+' L'+lx+' '+sy+' L'+lx+' '+ey+' L'+(aR+8)+' '+ey;
+    } else {                       // 通道落在註記正下方：向上指入下緣
+      d = 'M'+sx+' '+sy+' L'+lx+' '+sy+' L'+lx+' '+(aB+8);
+    }
+    path.setAttribute('d', d);
+    // 窄螢幕排版換行時（均衡樣本落到表格下方）改為隱藏，避免亂線
+    path.style.display = (ey > br.top - pr.top) ? 'none' : '';
+  }
+  window.addEventListener('resize', function(){ requestAnimationFrame(drawS8Flowline); });
+  document.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('.tab-btn')) setTimeout(drawS8Flowline, 60);
+  });
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setTimeout(drawS8Flowline, 120); });
+  else setTimeout(drawS8Flowline, 120);
+})();
+</script>
+</body>
+</html>
