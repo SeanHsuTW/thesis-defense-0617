@@ -1773,12 +1773,17 @@ nav.tabs .tabs-inner{ gap: 4px; }
 #s8 .s8-flow-branches{ display: flex; flex-direction: column; gap: 6px; }
 #s8 .s8-flow-row{ display: flex; align-items: baseline; gap: 8px; font-weight: 600; }
 #s8 .s8-arrow{ color: var(--ink-mid); font-weight: 800; }
+/* 三者同列：橫向時米色 L檢定整列排在表格下方 */
+#s8 .s8-levene{ flex: 1 1 100%; min-width: 0; }
 @media (max-width: 860px){
   #s8 .s8-panel-head{ align-items: flex-start; }
-  #s8 .s8-table-wrap{ flex-direction: column; align-items: stretch; }
-  #s8 .s8-table{ font-size: 14px; }
+  #s8 .s8-table{ font-size: 14px; flex-basis: 100%; }
   #s8 .s8-table th, #s8 .s8-table td{ padding: 9px 8px; }
   #s8 .s8-flow{ flex-direction: column; align-items: flex-start; }
+  /* 直向：表格整列在上；下一列 米色 L檢定(左) ＋ 藍色 其他三法(右) 並排 */
+  #s8 .s8-table-wrap{ align-items: flex-start; }
+  #s8 .s8-levene{ flex: 1 1 0; order: 2; }
+  #s8 .s8-alt{ flex: 1 1 0; min-width: 0; order: 3; }
 }
 </style>
 </head>
@@ -2644,7 +2649,6 @@ html, body { overflow-x: clip; }
 <div>資料轉換（Data Transformation）</div>
 <div>無母數共變數分析<br>（Quade's Nonparametric ANCOVA）</div>
 </div>
-</div>
 
 <div class="s8-levene">
 <p class="s8-levene-lead">L 檢定不是決定要不要用 ANCOVA 分析的關鍵，<br>它是用來看各組的散佈結構（鐘型形狀）有沒有相似。</p>
@@ -2669,6 +2673,7 @@ html, body { overflow-x: clip; }
 </div>
 </li>
 </ol>
+</div>
 </div>
 </div>
 </section></main>
